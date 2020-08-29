@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0 0 0 0;
+}
+
+@mixin flex-column() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin input-style {
+    border: 1px solid rgb(228, 228, 228);
+    text-align: center;
+    height: 5vh;
+    width: 65%;
+    margin-bottom: 1vh;
+    &:focus {
+        border-color: rgb(134, 134, 134);
+    }
+}
+
+input {
+    border: none;
+    margin: 0 0 0 0;
+    outline: none;
+}
+
+select {
+    border: none;
+    margin: 0 0 0 0;
+    outline: none;
+    background-color: white;
+}
+
+//material icons
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.material-icons.md-light {
+    color: rgb(128, 123, 123);
+}
+.material-icons.md-light.md-inactive {
+    color: rgba(48, 46, 46, 0.3);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,41 @@
+<header>
+  <div class="logo-container">
+    <button mat-button class="menu-button" (click)="sidenav.toggle()">
+      <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+    </button>
+    <span>Logo</span>
+  </div>
+  <div class="search-container">
+    <input class="certificate-search" type="text" placeholder="Search by item name">
+    <select>
+      <option value="All Categories">All Categories</option>
+      <option value="All Categories">All Categories</option>
+      <option value="All Categories">All Categories</option>
+      <option value="All Categories">All Categories</option>
+      <option value="All Categories">All Categories</option>
+      <option value="All Categories">All Categories</option>
+    </select>
+  </div>
+  <div class="right-buttons-container">
+    <i class="material-icons md-24 md-dark">favorite</i>
+    <i class="material-icons md-24 md-dark">shopping_cart</i>
+    <a href="">Login</a>
+    <span>|</span>
+    <a href="">Sign Up</a>
+  </div>
+</header>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
+    (click)="onSidenavClick()">
+    <a mat-button routerLink="/page1">Page 1</a>
+    <a mat-button routerLink="/page2">Page 2</a>
+    <a mat-button routerLink="/page3">Page 3</a>
+    <a mat-button routerLink="/page4">Page 4</a>
+    <a mat-button routerLink="/page5">Page 5</a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <!-- <router-outlet></router-outlet> -->
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
