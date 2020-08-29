@@ -27,15 +27,13 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
     (click)="onSidenavClick()">
-    <a mat-button routerLink="/page1">Page 1</a>
-    <a mat-button routerLink="/page2">Page 2</a>
-    <a mat-button routerLink="/page3">Page 3</a>
-    <a mat-button routerLink="/page4">Page 4</a>
-    <a mat-button routerLink="/page5">Page 5</a>
+    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/page3">Registration</a>
+    <a mat-button routerLink="/page4">About</a>
+    <a mat-button routerLink="/page5">Profile</a>
   </mat-sidenav>
   <mat-sidenav-content>
-    <main>
-      <!-- <router-outlet></router-outlet> -->
-    </main>
+      <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,20 @@
+<div class="form-content">
+    <div class="round-logo">
+        <span>Logo</span>
+    </div>
+    <form [formGroup]="loginForm">
+        <input formControlName="login" type="text" placeholder="Login">
+        <div *ngIf="_login.invalid && (_login.touched || _login.dirty)">
+            <span class="error-message" *ngIf="_login.errors?.minlength">Login must be longer than 5</span>
+            <span class="error-message" *ngIf="_login.errors?.maxlength">Login must be no longer than 16</span>
+            <span class="error-message" *ngIf="_login.errors?.required">Field is required</span>
+        </div>
+        <input formControlName="password" type="text" placeholder="Password">
+        <div *ngIf="_password.invalid && (_password.touched || _password.dirty)">
+            <span class="error-message" *ngIf="_password.errors?.minlength">Password must be longer than 5</span>
+            <span class="error-message" *ngIf="_password.errors?.maxlength">Password must be no longer than 16</span>
+            <span class="error-message" *ngIf="_password.errors?.required">Field is required</span>
+        </div>
+        <input type="button" value="Login" (click)="authenticate()">
+    </form>
+</div>

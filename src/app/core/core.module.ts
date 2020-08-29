@@ -1,7 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
-    imports: [],
+    imports: [HttpClientModule],
     declarations: [],
     providers: []
   })
@@ -9,7 +11,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
     static forRoot(): ModuleWithProviders<CoreModule> {
       return {
         ngModule: CoreModule,
-        providers: []
+        providers: [AuthenticationService]
       }
     }
   }

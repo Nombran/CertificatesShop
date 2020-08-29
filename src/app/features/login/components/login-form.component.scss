@@ -1,0 +1,61 @@
+@import "../../../../styles.scss";
+
+$header_background_color:white;
+$main_background_color:rgb(240, 238, 238);
+$registration_header_color: rgb(53, 53, 53);
+
+.form-content {
+    @include flex-column;
+    justify-content: flex-start;
+    margin-top: 10vh;
+    width: 27vw;
+    height: 80vh;
+    .round-logo {
+        @include flex-column;
+        width: 55%;
+        height: 50%;
+        border-radius: 100%;
+        background-color: rgb(192, 190, 190);
+        z-index: 99;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    form {
+        @include flex-column;
+        width: 100%;
+        height: 72%;
+        border: 1px solid rgb(212, 212, 212);
+        background-color: white;
+        transform: translate(0, -30%);
+        padding-top: 8vh;
+        input {
+            @include input-style;
+        }
+        .error-message {
+            font-size: 10px;
+            color:red;
+        }
+        .ng-invalid {
+            &.ng-dirty {
+                border-color: red;
+                color: red;
+            }
+            &.ng-touched {
+                border-color: red;
+                color: red;
+            }
+        }
+        input[type="button"] {
+            width: 66%;
+            height: 6vh;
+            background-color: rgb(48, 204, 126);
+            font-weight: bold;
+            color: white;
+            &:hover {
+                cursor: pointer;
+                background-color: green;
+            }
+        }
+    }
+}
