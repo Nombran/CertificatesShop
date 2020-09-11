@@ -1,0 +1,9 @@
+<main #scrollframe>
+    <tag-panel></tag-panel>
+    <div class="certificates-container">
+        <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate"></certificate-card>
+    </div>
+    <div class="loading" [style.display] = "isLoading ? 'inherit' : 'none'">
+        <img src="../../../../../assets/25(1).gif" alt="">
+    </div>
+</main>

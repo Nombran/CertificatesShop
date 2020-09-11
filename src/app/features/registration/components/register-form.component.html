@@ -1,0 +1,38 @@
+<div class="form-container">
+    <div class="container-header">
+        <span>Register</span>
+    </div>
+    <form [formGroup]="registerForm">
+        <div class="text-input-container">
+            <div class="input-column">
+                <div class="input-with-label">
+                    <label >Login</label>
+                    <input type="text" formControlName="login">
+                </div>
+                <div class="input-with-label">
+                    <label >Passwod</label>
+                    <input type="text" formControlName="password">
+                </div>
+                <div class="input-with-label">
+                    <label>Repeat password</label>
+                    <input type="text" formControlName="repeatPassword">
+                </div>
+            </div>
+            <div class="input-column second">
+                <div class="input-with-label">
+                    <label >First Name</label>
+                    <input type="text" formControlName="firstName">
+                </div>
+                <div class="input-with-label">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastName">
+                </div>
+               
+            </div>
+        </div>
+        <div class="button-container">
+            <input type="button" class="cancel-button" value="Cancel">
+            <input (click)="onSubmit()" type="button" class="signup-button" value="Sign Up">
+        </div>
+    </form>
+</div>

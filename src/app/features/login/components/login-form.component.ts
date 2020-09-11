@@ -1,6 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../../core/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppState, selectAuthState } from '../../../store/app.states';
+import { Store } from '@ngrx/store';
+import { LogIn } from 'src/app/store/actions/auth.actions';
+import { Observable } from 'rxjs';
 
 export interface AuthenticationResult {
     token: string;
@@ -12,12 +16,24 @@ export interface AuthenticationResult {
     styleUrls: ["./login-form.component.scss"],
     selector: "login-form"
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
     loginForm: FormGroup
+    authState: Observable<any>;
 
-    constructor(private formBuilder: FormBuilder,
-        private authService: AuthenticationService) {
+    constructor(private store: Store<AppState>,
+        private formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,) {
         this.createForm();
+        this.authState = this.store.select(selectAuthState);
+    }
+    ngOnInit(): void {
+        this.authState.subscribe((state) => {
+            if (state.errorMessage != null) {
+                this._snackBar.open(state.errorMessage, null, {
+                    duration: 2000,
+                });
+            }
+        });
     }
 
     private createForm() {
@@ -43,11 +59,13 @@ export class LoginFormComponent {
     }
 
     authenticate() {
-        this.authService
-            .authenticateUser(this._login.value, this._password.value)
-            .subscribe((result: AuthenticationResult) => {
-                console.log(result.token);
-                console.log(result.tokenValidity);
-            });
+        if (this._login.invalid || this._password.invalid) {
+            return;
+        }
+        const payload: any = {
+            username: this._login.value,
+            password: this._password.value
+        };
+        this.store.dispatch(new LogIn(payload));
     }
 }

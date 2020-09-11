@@ -1,0 +1,37 @@
+@import "../../../../../styles.scss";
+
+.category {
+    @include flex-row;
+    opacity: 1;
+    width: 13vw;
+    height: 7vh;
+    border-radius: 5px;
+    margin: 1vw;
+    transition: background 1s;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    -ms-transition: background 1s;
+    -o-transition: background 1s;
+    background-image: url("../../../../../assets/draw.jpg");
+    &:hover {
+        background-color: rgba(224, 224, 224, 0.486);
+        background-blend-mode: lighten;
+    }
+    background-size: cover;
+    .category-name {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        max-width: 70%;
+        overflow: hidden;
+    }
+    mat-icon {
+        cursor: pointer;
+        &:hover {
+            color:red;
+        }
+    }
+}

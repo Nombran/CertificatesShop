@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // apiUrl: "https://certificates-boot.herokuapp.com/api/v1/"
   apiUrl: "http://localhost:8081/api/v1/"
 };
 

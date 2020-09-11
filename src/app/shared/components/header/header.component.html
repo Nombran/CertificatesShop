@@ -5,35 +5,36 @@
     </button>
     <span>Logo</span>
   </div>
-  <div class="search-container">
-    <input class="certificate-search" type="text" placeholder="Search by item name">
-    <select>
-      <option value="All Categories">All Categories</option>
-      <option value="All Categories">All Categories</option>
-      <option value="All Categories">All Categories</option>
-      <option value="All Categories">All Categories</option>
-      <option value="All Categories">All Categories</option>
-      <option value="All Categories">All Categories</option>
-    </select>
-  </div>
+  <form [formGroup]="tagForm" class="search-container"
+    [style.visibility]="!ifCertificatesRoute() ? 'hidden' : 'inherit'">
+    <input class="certificate-search" type="text" ngDefaultControl [formControl]="certificateControl"  placeholder="Search by item name">
+      <input class="tag-input" type="text" placeholder="Pick tag" aria-label="Number" [formControl]="tagControl" 
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" ngDefaultControl [formControl]="tagSelectControl">
+        <mat-option *ngFor="let option of loadedTags" [value]="option.name" (click)="tagChoosed(option)" >
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+  </form>
   <div class="right-buttons-container">
     <i class="material-icons md-24 md-dark">favorite</i>
     <i class="material-icons md-24 md-dark">shopping_cart</i>
-    <a href="">Login</a>
-    <span>|</span>
-    <a href="">Sign Up</a>
+    <a *ngIf="!isUserAuthenticated" href="">Login</a>
+    <a *ngIf="isUserAuthenticated" (click)="logOut()">Logout</a>
+    <span *ngIf="!isUserAuthenticated">|</span>
+    <a *ngIf="!isUserAuthenticated" href="">Sign Up</a>
   </div>
 </header>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
     (click)="onSidenavClick()">
-    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="/certificates">Home</a>
     <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="/page3">Registration</a>
+    <a mat-button routerLink="/registration">Registration</a>
     <a mat-button routerLink="/page4">About</a>
     <a mat-button routerLink="/page5">Profile</a>
   </mat-sidenav>
   <mat-sidenav-content>
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

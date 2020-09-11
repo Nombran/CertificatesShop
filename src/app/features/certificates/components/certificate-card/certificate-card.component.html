@@ -1,0 +1,24 @@
+<div class="certificate" [style.opacity]="opacity">
+    <div class="certificate-image">
+        <img src="../../../../../assets/draw.jpg" alt="">
+    </div>
+    <div class="certificate-info">
+        <div class="first-row">
+            <span>{{certificateData.name}}</span>
+            <i class="material-icons md-16 md-dark">favorite</i>
+        </div>
+        <div class="second-row">
+            <span class="description">
+                {{certificateData.description}}
+            </span>
+            <span class="duration">
+                Expires in {{certificateData.duration}} days
+            </span>
+        </div>
+        <div class="line"></div>
+        <div class="third-row">
+            <span class="price">{{certificateData.price}}$</span>
+            <input type="button" value="Add to card">
+        </div>
+    </div>
+</div>

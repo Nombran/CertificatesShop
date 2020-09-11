@@ -4,9 +4,13 @@ import { SharedModule } from './shared/shared.module'
 import { AppRoutingModule } from './app-routing.module';
 import { FeaturesModule } from './features/features.module'
 import { CoreModule } from './core/core.module'
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AuthEffects } from './store/effects/auth.effects';
+import { reducers } from './store/app.states';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

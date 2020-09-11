@@ -1,0 +1,31 @@
+@import "../.././../../../styles.scss";
+
+$header_background_color:white;
+$main_background_color:rgb(240, 238, 238);
+$registration_header_color: rgb(53, 53, 53);
+
+main {
+    @include flex-column;
+    background-color: $main_background_color;
+    height: auto;
+    width: 100%;
+}
+
+.loading {
+    @include flex-column;
+    background-color: $main_background_color;
+    height: 20vh;
+    display: none;
+}
+
+.certificates-container {
+    @include flex-row;
+    box-sizing: border-box;
+    padding-top: 3vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-bottom: 0vh;
+    flex-wrap: wrap;
+    min-height: 70vh;
+    height: auto;
+}
