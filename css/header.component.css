@@ -208,6 +208,7 @@ header {
 .right-buttons-container a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 .right-buttons-container a:hover {

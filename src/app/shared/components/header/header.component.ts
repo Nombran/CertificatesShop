@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChildren, ViewChild, QueryList } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { AppState, selectAuthState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LogOut } from 'src/app/store/actions/auth.actions';
-import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TagService, TagParams } from 'src/app/core/services/tag.service';
 import { Tag } from '../../../models/tag'
 import { debounce } from 'lodash'

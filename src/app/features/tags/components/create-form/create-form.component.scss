@@ -1,0 +1,67 @@
+@import "../../../../../styles.scss";
+
+::ng-deep .snackbar-error {
+    color: red;
+    background: none;
+    border: 2px solid  red;
+}
+
+::ng-deep .snackbar-success {
+    color: green;
+    background: none;
+    border: 2px solid green;
+}
+
+form {
+    @include flex-column;
+    justify-content: space-between;
+    background-color: white;
+    width: 40vw;
+    height: 50vh;
+    $header-height: 18%;
+    .container-header {
+        @include flex-column;
+        align-items: flex-start;
+        padding-left: 5%;
+        width: 95%;
+        height: $header-height;
+        background-color: rgb(53, 53, 53);
+        color: white;
+        font-weight: bold;
+    }
+    mat-form-field {
+        width: 70%;
+    }
+    .mat-input-element {
+        color: rgb(53, 53, 53);
+    }
+    ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+        background-color: green !important;
+    }
+    ::ng-deep .mat-form-field-invalid .ng-invalid {
+        color: red !important;
+    }
+    ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+        color: green !important;
+    }
+    input[type="button"] {
+        cursor: pointer;
+        margin-bottom: 5vh;
+        width: 70%;
+        height: 6vh;
+        font-weight: bold;
+        background-color: rgb(48, 204, 126);
+        color: white;
+        &:hover {
+            background-color: white;
+            border: 1px solid rgb(48, 204, 126);
+            color: rgb(48, 204, 126);
+        }
+        &:disabled {
+            cursor: auto;
+            background-color: white;
+            border: 1px solid red;
+            color: red;
+        }
+    }
+}

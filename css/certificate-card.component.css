@@ -151,6 +151,9 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   font-weight: bold;
+  height: 7vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .certificate .certificate-info .first-row i {

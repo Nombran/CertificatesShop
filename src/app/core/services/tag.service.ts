@@ -29,4 +29,11 @@ export class TagService {
         }
         return this.http.get(this.apiUrl + 'tags', {params: httpParams});
     }
+
+    createTag(name: string) {
+        const body = {
+            name: name
+        }
+        return this.http.post(this.apiUrl + 'tags', body);
+    }
 }

@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TagPanelComponent } from './certificates/components/tag-panel/tag-panel.component'
 import { TagComponent } from './certificates/components/tag/tag.component'
 import { MatIconModule } from '@angular/material/icon'
+import { CreateTagFormComponent } from './tags/components/create-form/create-form.component'
+import { CreateTagPageComponent } from './tags/pages/create-page/create-page.component'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
     declarations: [
@@ -23,9 +27,13 @@ import { MatIconModule } from '@angular/material/icon'
         SearchCertificatesPage,
         CertificateCardComponent,
         TagPanelComponent,
-        TagComponent
+        TagComponent,
+        CreateTagFormComponent,
+        CreateTagPageComponent
     ],
     imports: [
+        MatInputModule,
+        MatFormFieldModule,
         MatIconModule,
         ReactiveFormsModule,
         CommonModule,

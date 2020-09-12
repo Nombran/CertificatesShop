@@ -70,7 +70,12 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 20vh;
-  width: 100vw;
+  min-height: 20vh;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: auto;
+  width: 98.9vw;
   background-color: #dfdbdb;
+  padding-left: 0;
+  padding-right: 0;
 }

@@ -56,54 +56,21 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.category {
+main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  opacity: 1;
-  width: 13vw;
-  height: 7vh;
-  border-radius: 5px;
-  margin: 1vw;
-  transition: background 1s;
-  -webkit-transition: background 1s;
-  -moz-transition: background 1s;
-  -ms-transition: background 1s;
-  -o-transition: background 1s;
-  background-image: url("../../../../../assets/draw.jpg");
-  background-size: cover;
-}
-
-.category:hover {
-  background-color: rgba(224, 224, 224, 0.486);
-  background-blend-mode: lighten;
-}
-
-.category .category-name {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  max-width: 70%;
-  overflow: hidden;
-}
-
-.category mat-icon {
-  cursor: pointer;
-}
-
-.category mat-icon:hover {
-  color: red;
+  background-color: #f0eeee;
+  height: 90vh;
+  width: 100%;
 }

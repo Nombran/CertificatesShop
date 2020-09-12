@@ -19,18 +19,17 @@
   <div class="right-buttons-container">
     <i class="material-icons md-24 md-dark">favorite</i>
     <i class="material-icons md-24 md-dark">shopping_cart</i>
-    <a *ngIf="!isUserAuthenticated" href="">Login</a>
+    <a *ngIf="!isUserAuthenticated" href="/login">Login</a>
     <a *ngIf="isUserAuthenticated" (click)="logOut()">Logout</a>
     <span *ngIf="!isUserAuthenticated">|</span>
-    <a *ngIf="!isUserAuthenticated" href="">Sign Up</a>
+    <a *ngIf="!isUserAuthenticated" href="/registration">Sign Up</a>
   </div>
 </header>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
     (click)="onSidenavClick()">
     <a mat-button routerLink="/certificates">Home</a>
-    <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="/registration">Registration</a>
+    <a mat-button routerLink="/tags/create">Create New Tag</a>
     <a mat-button routerLink="/page4">About</a>
     <a mat-button routerLink="/page5">Profile</a>
   </mat-sidenav>
