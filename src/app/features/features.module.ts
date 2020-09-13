@@ -17,9 +17,16 @@ import { CreateTagFormComponent } from './tags/components/create-form/create-for
 import { CreateTagPageComponent } from './tags/pages/create-page/create-page.component'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
+import { CreateCertificatePageComponent } from './certificates/pages/create-page/create-page.component'
+import { CertificateFormComponent } from './certificates/components/certificate-form/certificate-form.component'
+import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
 
 @NgModule({
     declarations: [
+        CertificateFormComponent,
+        CreateCertificatePageComponent,
         LoginFormComponent,
         LoginPageComponent,
         RegistrationPageComponent,
@@ -32,6 +39,9 @@ import { MatInputModule } from '@angular/material/input'
         CreateTagPageComponent
     ],
     imports: [
+        MatAutocompleteModule,
+        MatChipsModule,
+        MatSelectModule,
         MatInputModule,
         MatFormFieldModule,
         MatIconModule,

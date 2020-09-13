@@ -2,11 +2,10 @@
 
 form {
     @include flex-column;
-    justify-content: space-between;
-    background-color: white;
-    width: 40vw;
-    height: 50vh;
-    $header-height: 18%;
+    width: 70vw;
+    min-height: 60vh;
+    height: auto;
+    $header-height: 8vh;
     .container-header {
         @include flex-column;
         align-items: flex-start;
@@ -17,14 +16,35 @@ form {
         color: white;
         font-weight: bold;
     }
+    .input-container {
+        @include flex-column;
+        background-color: white;
+        justify-content: flex-start;
+        width: 70vw;
+        min-height: 52vh;
+        .first-row {
+            @include flex-row;
+            padding-top: 5vh;
+            align-items: flex-start;
+            width: 70vw;
+            min-height: 35vh;
+            .input-col {
+                @include flex-column;
+                width:50%;
+                height: 100%;
+            }
+        }
+    }
     mat-form-field {
         width: 70%;
     }
-    .mat-input-element {
-        color: rgb(53, 53, 53);
-    }
+
     ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
         background-color: white;
+    }
+
+    .mat-input-element {
+        color: rgb(53, 53, 53);
     }
     ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
         background-color: green !important;
@@ -36,6 +56,7 @@ form {
         color: green !important;
     }
     input[type="button"] {
+        margin-top: 5%;
         cursor: pointer;
         margin-bottom: 5vh;
         width: 70%;

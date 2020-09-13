@@ -1,0 +1,64 @@
+<form [formGroup]="certificateForm">
+    <div class="container-header">
+        <span>Create New Certificate</span>
+    </div>
+    <div class="input-container">
+        <div class="first-row">
+            <div class="input-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input autocomplete="off" matInput formControlName="certificateName">
+                    <mat-error *ngIf="_certificateName.invalid"></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Desctiption</mat-label>
+                    <input autocomplete="off" matInput formControlName="certificateDescription">
+                    <mat-error *ngIf="_certificateDescription.invalid"></mat-error>
+                </mat-form-field>
+                <mat-form-field class="tag-list">
+                    <mat-chip-list #chipList aria-label="Tag selection">
+                        <mat-chip *ngFor="let tag of tags" selectable="true" removable="true" (removed)="remove(tag)">
+                            {{tag.name}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Choose tags" #tagInput formControlName="tagsControl"
+                            [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let tag of loadedTags" [value]="tag.name" (click)="selected(tag)">
+                            {{tag.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="input-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Duration</mat-label>
+                    <input autocomplete="off" type="number" matInput formControlName="duration">
+                    <mat-error *ngIf="_duration.invalid"></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Price</mat-label>
+                    <input autocomplete="off" type="number" matInput formControlName="price">
+                    <mat-error *ngIf="_price.invalid"></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Certificate status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="PUBLISHED">
+                            Published
+                        </mat-option>
+                        <mat-option value="ACTIVE">
+                            Active
+                        </mat-option>
+                        <mat-option value="ACTIVE">
+                            Inactive
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <input (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
+            </div>
+        </div>
+    </div>
+</form>

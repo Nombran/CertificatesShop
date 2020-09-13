@@ -2,6 +2,18 @@
     margin: 0 0 0 0;
 }
 
+::ng-deep .snackbar-error {
+    color: red;
+    background: none;
+    border: 2px solid  red;
+}
+
+::ng-deep .snackbar-success {
+    color: green;
+    background: none;
+    border: 2px solid green;
+}
+
 @mixin flex-column() {
     display: flex;
     flex-direction: column;

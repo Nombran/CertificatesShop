@@ -6,6 +6,6 @@
         <mat-label>Enter tag name value</mat-label>
         <input autocomplete="off" matInput formControlName="tagName">
         <mat-error *ngIf="_tagName.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <input (click)="onSubmit()" type="button" value="Create" [disabled] = "_tagName.invalid">
+    </mat-form-field>
+    <input (click)="onSubmit()" type="button" value="Create" [disabled]="_tagName.invalid">
 </form>

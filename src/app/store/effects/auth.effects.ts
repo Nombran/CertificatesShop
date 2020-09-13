@@ -50,7 +50,9 @@ export class AuthEffects {
   LogInSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap((authResult) => {
-      this.router.navigateByUrl('/certificates');
+      if (this.router.url.includes('/login')) {
+        this.router.navigateByUrl('/certificates');
+      }
     }));
 
   @Effect()

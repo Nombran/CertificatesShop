@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from '../../../environments/environment';
+import { Certificate } from 'src/app/models/certificate';
 
 export enum CertificateOrderBy {
     ID = "id",
@@ -53,5 +54,9 @@ export class CertificateService {
 
     loadNextPage(nextPageLink: string) {
         return this.http.get(nextPageLink);
+    }
+
+    create(certificate: Certificate) {
+        return this.http.post(this.apiUrl + 'certificates', certificate);
     }
 }

@@ -99,6 +99,6 @@ export class HeaderComponent implements OnInit {
     }
 
     ifCertificatesRoute() {
-        return this._routeUrl.startsWith('/certificates');
+        return this._routeUrl.split('?')[0] == '/certificates';
     }
 }

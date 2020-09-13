@@ -1,12 +1,12 @@
 export interface Certificate {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     price: number;
-    creationDate: Date;
-    modificationDate: Date;
+    creationDate?: Date;
+    modificationDate?: Date;
     duration: number;
-    status: CertificateStatus
+    status: string
     tags: Array<string>
 }
 
