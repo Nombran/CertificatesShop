@@ -28,4 +28,6 @@ export class AuthenticationService {
         const url = environment.apiUrl + 'users/me';
         return this.http.get(url);
     }
+
+    
 }

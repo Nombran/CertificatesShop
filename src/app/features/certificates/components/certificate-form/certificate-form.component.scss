@@ -7,14 +7,22 @@ form {
     height: auto;
     $header-height: 8vh;
     .container-header {
-        @include flex-column;
-        align-items: flex-start;
+        @include flex-row;
+        justify-content: flex-start;
         padding-left: 5%;
         width: 95%;
         height: $header-height;
         background-color: rgb(53, 53, 53);
         color: white;
         font-weight: bold;
+        .inactive {
+            margin-left: 30vw;
+            color: red;
+        }
+        .active {
+            margin-left: 30vw;
+            color: orange;
+        }
     }
     .input-container {
         @include flex-column;
@@ -30,7 +38,7 @@ form {
             min-height: 35vh;
             .input-col {
                 @include flex-column;
-                width:50%;
+                width: 50%;
                 height: 100%;
             }
         }
@@ -39,10 +47,9 @@ form {
         width: 70%;
     }
 
-    ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
+    ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
         background-color: white;
     }
-
     .mat-input-element {
         color: rgb(53, 53, 53);
     }
@@ -54,6 +61,18 @@ form {
     }
     ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
         color: green !important;
+    }
+    .disabled { 
+        position : relative; 
+        color    : grey;
+    }
+    .disabled:after {
+        position :absolute;
+        left     : 0;
+        top      : 0;
+        width    : 100%;
+        height   : 100%;
+        content  :' ';
     }
     input[type="button"] {
         margin-top: 5%;

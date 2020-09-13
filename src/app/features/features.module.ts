@@ -22,9 +22,12 @@ import { CertificateFormComponent } from './certificates/components/certificate-
 import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { EditCertificatePageComponent } from './certificates/pages/edit-page/edit-page.component'
 
 @NgModule({
     declarations: [
+        EditCertificatePageComponent,
+        CreateCertificatePageComponent,
         CertificateFormComponent,
         CreateCertificatePageComponent,
         LoginFormComponent,

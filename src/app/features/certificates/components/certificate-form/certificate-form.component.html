@@ -1,6 +1,9 @@
 <form [formGroup]="certificateForm">
     <div class="container-header">
-        <span>Create New Certificate</span>
+        <span *ngIf="!certificateForEdit">Create New Certificate</span>
+        <span *ngIf="certificateForEdit">Edit Certificate</span>
+        <span *ngIf="certificateForEditStatus == 'INACTIVE'" class="inactive">*Cannot edit inactive certificate</span>
+        <span *ngIf="certificateForEditStatus == 'ACTIVE'" class="active">*Active certificate can only be set to inactive</span>
     </div>
     <div class="input-container">
         <div class="first-row">
@@ -15,7 +18,7 @@
                     <input autocomplete="off" matInput formControlName="certificateDescription">
                     <mat-error *ngIf="_certificateDescription.invalid"></mat-error>
                 </mat-form-field>
-                <mat-form-field class="tag-list">
+                <mat-form-field class="tag-list" [class.disabled]= "certificateForEditStatus == 'INACTIVE' || certificateForEditStatus == 'ACTIVE'">
                     <mat-chip-list #chipList aria-label="Tag selection">
                         <mat-chip *ngFor="let tag of tags" selectable="true" removable="true" (removed)="remove(tag)">
                             {{tag.name}}
@@ -46,18 +49,19 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Certificate status</mat-label>
                     <mat-select formControlName="status">
-                        <mat-option value="PUBLISHED">
+                        <mat-option *ngIf="!certificateForEditStatus || certificateForEditStatus == 'PUBLISHED'" value="PUBLISHED">
                             Published
                         </mat-option>
-                        <mat-option value="ACTIVE">
+                        <mat-option *ngIf="!certificateForEditStatus || certificateForEditStatus == 'PUBLISHED'" value="ACTIVE">
                             Active
                         </mat-option>
-                        <mat-option value="ACTIVE">
+                        <mat-option *ngIf="certificateForEditStatus" value="INACTIVE">
                             Inactive
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <input (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
+                <input *ngIf="!certificateForEdit" (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
+                <input *ngIf="certificateForEdit" (click)="onEdit()" type="button" value="Save" [disabled]="certificateForm.invalid || certificateForEditStatus == 'INACTIVE'">
             </div>
         </div>
     </div>

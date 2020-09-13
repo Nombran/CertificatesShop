@@ -13,6 +13,10 @@ export class JwtTokenService {
     return jwt_decode(token);
   }
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
   isTokenExpired(tokenPayload: TokenPayLoad): boolean {
     const expiryTime = tokenPayload.exp;
     if (expiryTime) {
@@ -21,4 +25,6 @@ export class JwtTokenService {
       return false;
     }
   }
+
+
 }

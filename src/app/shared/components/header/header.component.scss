@@ -53,9 +53,15 @@ header {
         padding-bottom: 0;
         color: rgb(80, 78, 78);
     }
+    .certificate-search {
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+    }
     .tag-input {
         width: 15vw;
         border-left: none;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
     }
     select {
         height: 63%;

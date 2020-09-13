@@ -1,4 +1,5 @@
 <div class="certificate" [style.opacity]="opacity">
+    <span *ngIf="role == 'ROLE_ADMIN'" class = "status">{{certificateData.status}}</span>
     <div class="certificate-image">
         <img src="../../../../../assets/draw.jpg" alt="">
     </div>
@@ -18,7 +19,8 @@
         <div class="line"></div>
         <div class="third-row">
             <span class="price">{{certificateData.price}}$</span>
-            <input type="button" value="Add to card">
+            <input *ngIf="role != 'ROLE_ADMIN'" type="button" value="Add to card">
+            <input class="edit-button" *ngIf="role == 'ROLE_ADMIN'" type="button" value="Edit" (click)="onEdit(certificateData)">
         </div>
     </div>
 </div>

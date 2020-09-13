@@ -59,4 +59,13 @@ export class CertificateService {
     create(certificate: Certificate) {
         return this.http.post(this.apiUrl + 'certificates', certificate);
     }
+
+    findById(id: number) {
+        return this.http.get(this.apiUrl + 'certificates/' + id);
+    }
+
+    update(certificate: Certificate) {
+        const url = this.apiUrl + 'certificates/' + certificate.id;
+        return this.http.put(url, certificate);
+    }
 }

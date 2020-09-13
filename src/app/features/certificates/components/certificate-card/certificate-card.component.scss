@@ -29,6 +29,16 @@ $registration_header_color: rgb(53, 53, 53);
         cursor: pointer;
         overflow: hidden;
     }
+    .status { 
+        @include flex-row;
+        position: absolute;
+        justify-self: flex-start;
+        background-color:rgba(0, 0, 0, 0.5);
+        width: 15vw;
+        z-index: 100;
+        color: white;
+        font-weight: bold;
+    }
     .certificate-info {
         @include flex-column;
         justify-content: flex-start;
@@ -96,6 +106,10 @@ $registration_header_color: rgb(53, 53, 53);
                 font-weight: bold;
             }
             input {
+                &.edit-button {
+                    border: 1px solid red;
+                    color: red;
+                }
                 font-size: 13px;
                 background-color: white;
                 border: 1px solid rgb(155, 152, 152);
