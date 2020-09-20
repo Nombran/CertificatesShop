@@ -28,9 +28,9 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private tagService: TagService,
-        private store: Store<AppState>,
         private router: Router,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private store: Store<AppState>) {
         this.authState = this.store.select(selectAuthState);
         this.loadTags();
     }
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
         });
         this.certificateControl.valueChanges.subscribe(value => {
             debouncedCertificateNameChanges(value);
-        })
+        });
     }
 
     public onSidenavClick(): void {

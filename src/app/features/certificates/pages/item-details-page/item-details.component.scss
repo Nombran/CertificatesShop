@@ -1,0 +1,29 @@
+@import "../../../../../styles.scss";
+
+$main_background_color: rgb(240, 238, 238);
+
+main {
+    @include flex-row;
+    align-items: flex-start;
+    background-color: $main_background_color;
+    padding: 5%;
+    padding-top: 2%;
+    justify-content: space-around;
+    height: 90vh;
+    width: 100%;
+    box-sizing: border-box;
+    .main-info-container {
+        @include flex-column;
+        justify-content: start;
+        align-items: start;
+        padding-top: 5vh;
+        height: auto;
+        img {
+            --webkit-box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.75);
+            height: 50vh;
+            margin-bottom: 2vh;
+        }
+    }
+}

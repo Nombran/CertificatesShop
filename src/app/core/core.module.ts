@@ -6,6 +6,8 @@ import { CertificateService } from './services/certificates.service';
 import { TagService } from './services/tag.service'
 import { TokenInterceptor } from './interceptors/token.interceptor'
 import { ErrorInterceptor } from './interceptors/auth-error.interceptor'
+import { CookieService } from 'ngx-cookie-service';
+import { OrderService } from './services/order.service'
 
 @NgModule({
   imports: [HttpClientModule],
@@ -30,7 +32,9 @@ export class CoreModule {
         AuthenticationService,
         JwtTokenService,
         CertificateService,
-        TagService
+        TagService,
+        CookieService,
+        OrderService
       ]
     }
   }

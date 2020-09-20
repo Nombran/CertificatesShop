@@ -6,8 +6,9 @@ export interface Certificate {
     creationDate?: Date;
     modificationDate?: Date;
     duration: number;
-    status: string
-    tags: Array<string>
+    status: string;
+    count?: number;
+    tags: Array<string>;
 }
 
 export enum CertificateStatus {

@@ -19,7 +19,8 @@ export function reducer(state = initialState, action: All): State {
       return {
         ...state,
         isAuthenticated: true,
-        errorMessage: null
+        errorMessage: null,
+        user: action.payload.user
       };
     }
     case AuthActionTypes.LOGIN_FAILURE: {
@@ -32,7 +33,6 @@ export function reducer(state = initialState, action: All): State {
       return {
         ...state,
         isAuthenticated: false,
-        user: action.payload.user,
         errorMessage: null
       };
     }

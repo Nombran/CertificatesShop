@@ -18,7 +18,7 @@
   </form>
   <div class="right-buttons-container">
     <i class="material-icons md-24 md-dark">favorite</i>
-    <i class="material-icons md-24 md-dark">shopping_cart</i>
+    <i class="material-icons md-24 md-dark" matBadge="0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
     <a *ngIf="!isUserAuthenticated" href="/login">Login</a>
     <a *ngIf="isUserAuthenticated" (click)="logOut()">Logout</a>
     <span *ngIf="!isUserAuthenticated">|</span>

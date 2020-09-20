@@ -2,6 +2,10 @@
     <tag-panel></tag-panel>
     <div class="certificates-container">
         <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate"></certificate-card>
+        <div class="empty-result" *ngIf="certificates" [style.display] = "certificates == 0 ? 'inherit' : 'none'">
+            <span>No results were found for your search</span>
+            <img src="../../../../../assets/pngguru.com.png">
+        </div>
     </div>
     <div class="loading" [style.display] = "isLoading ? 'inherit' : 'none'">
         <img src="../../../../../assets/25(1).gif" alt="">

@@ -23,9 +23,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
 import { EditCertificatePageComponent } from './certificates/pages/edit-page/edit-page.component'
+import { ShoppingCardPageComponent } from './shopping-card/pages/shopping-card-page/shop-card.component';
+import { CertificateElementComponent } from './shopping-card/components/certificate-element/certificate-elem.component'
+import { ItemDetailsPageComponent } from './certificates/pages/item-details-page/item-details.component'
 
 @NgModule({
     declarations: [
+        ItemDetailsPageComponent,
+        CertificateElementComponent,
+        ShoppingCardPageComponent,
         EditCertificatePageComponent,
         CreateCertificatePageComponent,
         CertificateFormComponent,

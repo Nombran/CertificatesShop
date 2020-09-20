@@ -9,6 +9,7 @@ main {
     background-color: $main_background_color;
     height: auto;
     width: 100%;
+    min-height: 100%;
 }
 
 .loading {
@@ -28,4 +29,17 @@ main {
     flex-wrap: wrap;
     min-height: 70vh;
     height: auto;
+}
+
+.empty-result {
+    @include flex-column;
+    span {
+        font-weight: bold;
+        color: rgb(77, 77, 77);
+        font-size: 18px;
+    }
+    img {
+        margin-top: 10vh;
+        width: 10vw;
+    }
 }

@@ -8,6 +8,10 @@
     border: 2px solid  red;
 }
 
+i {
+    user-select: none;
+}
+
 ::ng-deep .snackbar-success {
     color: green;
     background: none;

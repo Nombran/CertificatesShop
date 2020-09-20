@@ -4,6 +4,7 @@ import { CertificateCardComponent } from '../../components/certificate-card/cert
 import { Router, ActivatedRoute } from '@angular/router';
 import { CertificateParams, CertificateService, CertificateOrderBy } from 'src/app/core/services/certificates.service';
 import { debounce } from 'lodash'
+import { JwtTokenService } from 'src/app/core/services/jwt-token.service';
 
 @Component({
   selector: 'certificates-page',
@@ -20,8 +21,8 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
 
   constructor(
     private certificateService: CertificateService,
-    private route: ActivatedRoute
-
+    private route: ActivatedRoute,
+    private tokenService: JwtTokenService 
   ) { }
 
   ngAfterViewInit(): void {
@@ -33,6 +34,9 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
       let textPart: string = params.get('textPart');
       let tagNames: string[] = params.getAll('tagNames');
       let certificateParams: CertificateParams = { textPart: textPart, tagNames: tagNames };
+      if(this._userRole == 'ROLE_USER') {
+          certificateParams.statuses = ['ACTIVE'];
+      }
       this.certificateService.loadCertificates(certificateParams).subscribe((certificates: any) => {
         if (certificates._embedded) {
           this.certificates = certificates._embedded.certificateDtoList;
@@ -88,6 +92,15 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
 
   scrollBottom() {
       
+  }
+
+  get _userRole(): string {
+      const token = this.tokenService.getToken();
+      if(token) {
+        return this.tokenService.decodeToken(token).roles.toString();
+      } else {
+        return undefined;
+      }
   }
 
   showCertificates() {

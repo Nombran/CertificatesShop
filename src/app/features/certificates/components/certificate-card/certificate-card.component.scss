@@ -4,6 +4,12 @@ $header_background_color: white;
 $main_background_color: rgb(240, 238, 238);
 $registration_header_color: rgb(53, 53, 53);
 
+::ng-deep .snackbar-success {
+    color: white;
+    background: green;
+    border: 2px solid green;
+}
+
 .certificate {
     @include flex-column;
     justify-content: flex-start;
@@ -14,6 +20,12 @@ $registration_header_color: rgb(53, 53, 53);
     height: 55vh;
     background-color: white;
     opacity: 1;
+    &:hover {
+        cursor: pointer;
+        -webkit-box-shadow: 0px 3px 29px 2px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 3px 29px 2px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 3px 29px 2px rgba(0, 0, 0, 0.75);
+    }
     .certificate-image {
         height: 60%;
         width: 100%;
@@ -29,11 +41,12 @@ $registration_header_color: rgb(53, 53, 53);
         cursor: pointer;
         overflow: hidden;
     }
-    .status { 
+
+    .status {
         @include flex-row;
         position: absolute;
         justify-self: flex-start;
-        background-color:rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         width: 15vw;
         z-index: 100;
         color: white;
