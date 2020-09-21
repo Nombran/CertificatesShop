@@ -8,6 +8,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor'
 import { ErrorInterceptor } from './interceptors/auth-error.interceptor'
 import { CookieService } from 'ngx-cookie-service';
 import { OrderService } from './services/order.service'
+import { AdminGuard } from './guards/admin.guard'
+import { UserGuard } from './guards/user.guard'
+import {  IsLoggedGuard } from './guards/is-logged.guard'
 
 @NgModule({
   imports: [HttpClientModule],
@@ -34,7 +37,10 @@ export class CoreModule {
         CertificateService,
         TagService,
         CookieService,
-        OrderService
+        OrderService,
+        AdminGuard,
+        UserGuard,
+        IsLoggedGuard
       ]
     }
   }

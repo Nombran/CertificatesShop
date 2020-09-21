@@ -8,8 +8,6 @@ import { Router } from '@angular/router';
 import { CertificateService } from 'src/app/core/services/certificates.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
-
-
 @Component({
     selector: 'certificate-card',
     templateUrl: 'certificate-card.component.html',
@@ -57,7 +55,12 @@ export class CertificateCardComponent implements OnInit {
         this.router.navigateByUrl(url);
     }
 
-    addToCard() {
+    addToCard(event) {
+        event.stopPropagation();
+        if(!this.role) {
+            this.router.navigateByUrl('/login');
+            return;
+        }
         this.certificateService.addCertificateToCard(this.certificateData, this.userId);
         let config = new MatSnackBarConfig();
         config.panelClass = ['snackbar-success'];

@@ -18,7 +18,7 @@
   </form>
   <div class="right-buttons-container">
     <i class="material-icons md-24 md-dark">favorite</i>
-    <i class="material-icons md-24 md-dark" matBadge="0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
+    <i *ngIf="userRole == 'ROLE_USER'" class="material-icons md-24 md-dark" matBadge="0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
     <a *ngIf="!isUserAuthenticated" href="/login">Login</a>
     <a *ngIf="isUserAuthenticated" (click)="logOut()">Logout</a>
     <span *ngIf="!isUserAuthenticated">|</span>
@@ -29,9 +29,9 @@
   <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
     (click)="onSidenavClick()">
     <a mat-button routerLink="/certificates">Home</a>
-    <a mat-button routerLink="/tags/create">Create New Tag</a>
-    <a mat-button routerLink="/certificates/create">Create New Certificate</a>
-    <a mat-button routerLink="/page4">About</a>
+    <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/tags/create">Create New Tag</a>
+    <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/certificates/create">Create New Certificate</a>
+    <a *ngIf="userRole == 'ROLE_USER'" mat-button routerLink="/orders">Order history</a>
     <a mat-button routerLink="/page5">Profile</a>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,0 +1,14 @@
+<main *ngIf = "order">
+    <div class="container-header">
+        <span>Order date : {{order.purchaseDate}}</span>
+    </div>
+    <div class="card-container" [style.display]="!certificates ? 'none' : 'flex'">
+        <certificate-in-card *ngFor="let certificate of certificates" [certificate]="certificate" [ifEditable]="false"></certificate-in-card>
+        <div class="horizontal-line"></div>
+        <div class="total-info">
+            <span class=total-word>Total</span>
+            <span class="total-cost">${{order.totalPrice}}</span>
+        </div>
+        <input type="button" (click)="back()" value="Back">  
+    </div>
+</main>

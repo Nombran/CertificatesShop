@@ -22,7 +22,7 @@
         <div class="line"></div>
         <div class="third-row">
             <span class="price">{{certificateData.price}}$</span>
-            <input *ngIf="role != 'ROLE_ADMIN'" type="button" value="Add to card" (click)="addToCard()">
+            <input *ngIf="role != 'ROLE_ADMIN'" type="button" value="Add to card" (click)="addToCard($event)">
             <input class="edit-button" *ngIf="role == 'ROLE_ADMIN'" type="button" value="Edit"
                 (click)="onEdit(certificateData)">
         </div>

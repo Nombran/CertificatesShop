@@ -9,6 +9,7 @@ import { TagService, TagParams } from 'src/app/core/services/tag.service';
 import { Tag } from '../../../models/tag'
 import { debounce } from 'lodash'
 import { CertificateParams } from 'src/app/core/services/certificates.service';
+import { JwtTokenService } from 'src/app/core/services/jwt-token.service';
 
 @Component({
     selector: "app-header",
@@ -25,12 +26,14 @@ export class HeaderComponent implements OnInit {
     options: Array<string>;
     tagForm: FormGroup = new FormGroup({});
     loadedTags: Tag[];
+    userRole: string;
 
     constructor(
         private tagService: TagService,
         private router: Router,
         private route: ActivatedRoute,
-        private store: Store<AppState>) {
+        private store: Store<AppState>,
+        private tokenService: JwtTokenService) {
         this.authState = this.store.select(selectAuthState);
         this.loadTags();
     }
@@ -52,6 +55,11 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
         this.authState.subscribe((state) => {
             this.isUserAuthenticated = state.isAuthenticated;
+            const token: string = this.tokenService.getToken();
+            if (token) {
+                const decodedToken = this.tokenService.decodeToken(token);
+                this.userRole = decodedToken.roles.toString();
+            }
         });
         let debouncedTagNameChanges = debounce((value) => {
             const filterValue = value.toLowerCase();
@@ -89,7 +97,7 @@ export class HeaderComponent implements OnInit {
         this.tagControl.setValue('');
         let params = this.router.parseUrl(this.router.url).queryParamMap;
         let tagNames: string[] = params.getAll('tagNames');
-        if(tagNames.find(element => element === tag.name)) {
+        if (tagNames.find(element => element === tag.name)) {
             return;
         }
         tagNames.push(tag.name);

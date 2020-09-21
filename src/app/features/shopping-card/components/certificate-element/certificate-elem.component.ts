@@ -12,6 +12,7 @@ export class CertificateElementComponent {
     @Input() certificate: Certificate;
     @Output() removeCertificate: EventEmitter<any> = new EventEmitter<any>();
     @Output() addCertificate: EventEmitter<any> = new EventEmitter<any>();
+    @Input() ifEditable: boolean = true;
 
     add() {
         this.addCertificate.emit({certificate: this.certificate});

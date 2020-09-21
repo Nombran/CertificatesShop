@@ -8,16 +8,78 @@ import { CreateCertificatePageComponent } from './features/certificates/pages/cr
 import { EditCertificatePageComponent } from './features/certificates/pages/edit-page/edit-page.component'
 import { ShoppingCardPageComponent } from './features/shopping-card/pages/shopping-card-page/shop-card.component'
 import { ItemDetailsPageComponent } from './features/certificates/pages/item-details-page/item-details.component'
+import { PastOrdersPageComponent } from './features/orders/pages/past-orders/past-orders.component';
+import { OrderDetailsPageComponent } from './features/orders/pages/order-details/order-details.component'
+import { AdminGuard } from './core/guards/admin.guard';
+import { UserGuard } from './core/guards/user.guard'
+import { IsLoggedGuard } from './core/guards/is-logged.guard'
 
 const routes: Routes = [
-  {path: 'login', component: LoginPageComponent},
-  {path: 'registration', component: RegistrationPageComponent},
-  {path: 'certificates', component: SearchCertificatesPage},
-  {path: 'tags/create', component: CreateTagPageComponent},
-  {path: 'certificates/create', component: CreateCertificatePageComponent},
-  {path: 'certificates/:id/edit', component: EditCertificatePageComponent},
-  {path: 'certificates/card', component: ShoppingCardPageComponent},
-  {path: 'certificates/:id/details', component: ItemDetailsPageComponent}
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    canActivate: [IsLoggedGuard]
+  },
+  {
+    path: 'registration',
+    component: RegistrationPageComponent,
+    canActivate: [IsLoggedGuard]
+  },
+  {
+    path: 'certificates',
+    children: [
+      {
+        path: 'create',
+        component: CreateCertificatePageComponent,
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'card',
+        component: ShoppingCardPageComponent,
+        canActivate: [UserGuard]
+      },
+      {
+        path: ':id',
+        children: [
+          {
+            path: 'edit',
+            component: EditCertificatePageComponent,
+            canActivate: [AdminGuard]
+          },
+          {
+            path: 'details',
+            component: ItemDetailsPageComponent
+          },
+        ]
+      },
+      {
+        path: '',
+        component: SearchCertificatesPage
+      }
+    ]
+  },
+  {
+    path: 'tags/create',
+    component: CreateTagPageComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'orders',
+    children: [
+      {
+        path: ':id/details',
+        component: OrderDetailsPageComponent,
+        canActivate: [UserGuard]
+      },
+      {
+        path: '',
+        component: PastOrdersPageComponent,
+        canActivate: [UserGuard]
+      }
+    ]
+  },
+  { path: '**', redirectTo: 'certificates' }
+
 ];
 
 @NgModule({

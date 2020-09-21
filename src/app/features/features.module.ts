@@ -26,9 +26,15 @@ import { EditCertificatePageComponent } from './certificates/pages/edit-page/edi
 import { ShoppingCardPageComponent } from './shopping-card/pages/shopping-card-page/shop-card.component';
 import { CertificateElementComponent } from './shopping-card/components/certificate-element/certificate-elem.component'
 import { ItemDetailsPageComponent } from './certificates/pages/item-details-page/item-details.component'
+import { OrderItemComponent } from './orders/components/order-item/order-item.component'
+import { PastOrdersPageComponent } from './orders/pages/past-orders/past-orders.component'
+import { OrderDetailsPageComponent } from './orders/pages/order-details/order-details.component'
 
 @NgModule({
     declarations: [
+        OrderDetailsPageComponent,
+        PastOrdersPageComponent,
+        OrderItemComponent,
         ItemDetailsPageComponent,
         CertificateElementComponent,
         ShoppingCardPageComponent,
