@@ -4,6 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs'
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import {
   AuthActionTypes,
   LogIn, LogInSuccess, LogInFailure,
@@ -22,6 +23,7 @@ export class AuthEffects {
     private actions: Actions,
     private authService: AuthenticationService,
     private router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   @Effect()
@@ -65,7 +67,10 @@ export class AuthEffects {
           return new SignUpSuccess({ user: user });
         }),
         catchError((error) => {
-          console.log(error);
+          let config = new MatSnackBarConfig();
+          config.panelClass = ['snackbar-error'];
+          config.duration = 3000;
+          this._snackBar.open("Username already exists", null, config);
           return of(new SignUpFailure({ error: error }));
         }));
     }));

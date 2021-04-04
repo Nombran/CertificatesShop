@@ -75,14 +75,14 @@ export class CertificateFormComponent implements OnInit {
             certificateName: ['',
                 [
                     Validators.required,
-                    Validators.minLength(3),
+                    Validators.minLength(5),
                     Validators.maxLength(50)
                 ]
             ],
             certificateDescription: ['',
                 [
                     Validators.required,
-                    Validators.minLength(3),
+                    Validators.minLength(5),
                     Validators.maxLength(150)
                 ]
             ],
@@ -97,7 +97,7 @@ export class CertificateFormComponent implements OnInit {
                 [
                     Validators.required,
                     Validators.min(1),
-                    Validators.max(100)
+                    Validators.max(2000)
                 ]
             ],
             status: ['', [Validators.required]],

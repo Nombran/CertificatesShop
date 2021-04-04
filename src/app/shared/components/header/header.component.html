@@ -17,8 +17,7 @@
       </mat-autocomplete>
   </form>
   <div class="right-buttons-container">
-    <i class="material-icons md-24 md-dark">favorite</i>
-    <i *ngIf="userRole == 'ROLE_USER'" class="material-icons md-24 md-dark" matBadge="0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
+    <i *ngIf="userRole == 'ROLE_USER' && isUserAuthenticated" class="material-icons md-24 md-dark" [matBadge]="shoppingCardLength" [matBadgeHidden]="shoppingCardLength == 0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
     <a *ngIf="!isUserAuthenticated" href="/login">Login</a>
     <a *ngIf="isUserAuthenticated" (click)="logOut()">Logout</a>
     <span *ngIf="!isUserAuthenticated">|</span>
@@ -32,7 +31,6 @@
     <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/tags/create">Create New Tag</a>
     <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/certificates/create">Create New Certificate</a>
     <a *ngIf="userRole == 'ROLE_USER'" mat-button routerLink="/orders">Order history</a>
-    <a mat-button routerLink="/page5">Profile</a>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

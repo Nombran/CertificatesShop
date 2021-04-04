@@ -5,34 +5,58 @@
     <form [formGroup]="registerForm">
         <div class="text-input-container">
             <div class="input-column">
-                <div class="input-with-label">
-                    <label >Login</label>
-                    <input type="text" formControlName="login">
-                </div>
-                <div class="input-with-label">
-                    <label >Passwod</label>
-                    <input type="text" formControlName="password">
-                </div>
-                <div class="input-with-label">
-                    <label>Repeat password</label>
-                    <input type="text" formControlName="repeatPassword">
-                </div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Login</mat-label>
+                    <input autocomplete="off" matInput formControlName="login">
+                    <mat-error *ngIf="_login.invalid && (_login.errors.minlength || _login.errors.maxlength)">Login
+                        length must be from 5 to
+                        15 symbols</mat-error>
+                    <mat-error *ngIf="_login.invalid && _login.errors.required">Login is required filed
+                    </mat-error>
+                    <mat-error *ngIf="_login.invalid && _login.errors.pattern">Forbidden characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input autocomplete="off" matInput formControlName="password">
+                    <mat-error *ngIf="_password.invalid && (_password.errors.minlength || _password.errors.maxlength)">
+                        Password length must be from 5 to
+                        15 symbols</mat-error>
+                    <mat-error *ngIf="_password.invalid && _password.errors.required">Password is required filed
+                    </mat-error>
+                    <mat-error *ngIf="_password.invalid && _password.errors.pattern">Forbidden characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Repeat password</mat-label>
+                    <input autocomplete="off" matInput formControlName="repeatPassword">
+                    <mat-error *ngIf="_repeatPassword.invalid && _repeatPassword.errors.required">Required filed
+                    </mat-error>
+                    <mat-error *ngIf="_repeatPassword.invalid && _repeatPassword.errors.matching">Please, repeat password correctly
+                    </mat-error>
+                </mat-form-field>
             </div>
             <div class="input-column second">
-                <div class="input-with-label">
-                    <label >First Name</label>
-                    <input type="text" formControlName="firstName">
-                </div>
-                <div class="input-with-label">
-                    <label>Last Name</label>
-                    <input type="text" formControlName="lastName">
-                </div>
-               
+                <mat-form-field appearance="fill">
+                    <mat-label>First name</mat-label>
+                    <input autocomplete="off" matInput formControlName="firstName">
+                    <mat-error *ngIf="_firstName.invalid && (_firstName.errors.minlength || _firstName.errors.maxlength)">First name length must be from 2 to 25 symbols
+                    </mat-error>
+                    <mat-error *ngIf="_firstName.invalid && _firstName.errors.pattern">Forbidden characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last name</mat-label>
+                    <input autocomplete="off" matInput formControlName="lastName">
+                    <mat-error *ngIf="_lastName.invalid && (_lastName.errors.minlength || _lastName.errors.maxlength)">Last name length must be from 2 to 25 symbols
+                    </mat-error>
+                    <mat-error *ngIf="_lastName.invalid && _lastName.errors.pattern">Forbidden characters
+                    </mat-error>
+                </mat-form-field>
             </div>
         </div>
         <div class="button-container">
-            <input type="button" class="cancel-button" value="Cancel">
-            <input (click)="onSubmit()" type="button" class="signup-button" value="Sign Up">
+            <input (click)="onSubmit()" [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" type="button" class="signup-button" value="Sign Up">
         </div>
     </form>
 </div>

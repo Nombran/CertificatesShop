@@ -11,12 +11,12 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Name</mat-label>
                     <input autocomplete="off" matInput formControlName="certificateName">
-                    <mat-error *ngIf="_certificateName.invalid"></mat-error>
+                    <mat-error *ngIf="_certificateName.invalid">Certificate name length must be from 5 to 50 symbols</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Desctiption</mat-label>
                     <input autocomplete="off" matInput formControlName="certificateDescription">
-                    <mat-error *ngIf="_certificateDescription.invalid"></mat-error>
+                    <mat-error *ngIf="_certificateDescription.invalid">Description length must be from 5 to 150 symbols</mat-error>
                 </mat-form-field>
                 <mat-form-field class="tag-list" [class.disabled]= "certificateForEditStatus == 'INACTIVE' || certificateForEditStatus == 'ACTIVE'">
                     <mat-chip-list #chipList aria-label="Tag selection">
@@ -39,12 +39,12 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Duration</mat-label>
                     <input autocomplete="off" type="number" matInput formControlName="duration">
-                    <mat-error *ngIf="_duration.invalid"></mat-error>
+                    <mat-error *ngIf="_duration.invalid">Duration must be from 1 to 100</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Price</mat-label>
                     <input autocomplete="off" type="number" matInput formControlName="price">
-                    <mat-error *ngIf="_price.invalid"></mat-error>
+                    <mat-error *ngIf="_price.invalid">Price must be from 1 to 2000</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Certificate status</mat-label>
@@ -59,6 +59,7 @@
                             Inactive
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="_status.invalid">Status is required field</mat-error>
                 </mat-form-field>
                 <input *ngIf="!certificateForEdit" (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
                 <input *ngIf="certificateForEdit" (click)="onEdit()" type="button" value="Save" [disabled]="certificateForm.invalid || certificateForEditStatus == 'INACTIVE'">

@@ -30,28 +30,31 @@ $registration_header_color: rgb(53, 53, 53);
             @include flex-row;
             width: 100%;
             height: 70%;
-            .input-column {
-                @include flex-column;
-                width: 46%;
-                height: 100%;
-                justify-content: flex-start;
-                label {
-                    margin-bottom: 5px;
-                    font-size: 11px;
-                    color: $registration_header_color;
-                    font-weight: bold;
-                }
-                .input-with-label {
-                    @include flex-column;
-                    align-items: flex-start;
-                    input {
-                        @include input-style;
-                        width: $input_width - 1vw;
-                        text-align: left;
-                        padding-left: 1vw;
-                    }
-                }
-            }
+        }
+        mat-form-field {
+            width: 25vw;
+        }
+        .input-column {
+            @include flex-column;
+            width: 50%;
+            justify-content: start;
+            height: 100%;
+        }
+        
+        ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+            background-color: white;
+        }
+        .mat-input-element {
+            color: rgb(53, 53, 53);
+        }
+        ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+            background-color: green !important;
+        }
+        ::ng-deep .mat-form-field-invalid .ng-invalid {
+            color: red !important;
+        }
+        ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+            color: green !important;
         }
         .button-container {
             @include flex-row;
@@ -59,7 +62,7 @@ $registration_header_color: rgb(53, 53, 53);
             height: 30%;
             input[type="button"] {
                 cursor: pointer;
-                width: ($input_width - 1vw) / 2;
+                width: ($input_width - 2vw);
                 height: 6vh;
                 margin-right: 1vw;
                 font-weight: bold;
@@ -67,10 +70,31 @@ $registration_header_color: rgb(53, 53, 53);
                     margin-right: 3vw;
                     background-color: rgb(48, 204, 126);
                     color: white;
+                    &.disabled { 
+                        position : relative; 
+                        color    : red;
+                        background-color: white;
+                        border: 1px solid red;
+                    }
+                    &.disabled:after {
+                        position :absolute;
+                        left     : 0;
+                        top      : 0;
+                        width    : 100%;
+                        height   : 100%;
+                        content  :' ';
+                    }
                     &:hover {
                         background-color: white;
                         border: 1px solid rgb(48, 204, 126);
                         color:rgb(48, 204, 126);
+                    }
+                    &:hover.disabled {
+                        position : relative; 
+                        color    : red;
+                        background-color: white;
+                        border: 1px solid red;
+                        cursor: auto;
                     }
                 }
                 &.cancel-button {

@@ -10,6 +10,7 @@ import { Tag } from '../../../models/tag'
 import { debounce } from 'lodash'
 import { CertificateParams } from 'src/app/core/services/certificates.service';
 import { JwtTokenService } from 'src/app/core/services/jwt-token.service';
+import { Cookies } from '@cedx/ngx-cookies';
 
 @Component({
     selector: "app-header",
@@ -27,13 +28,15 @@ export class HeaderComponent implements OnInit {
     tagForm: FormGroup = new FormGroup({});
     loadedTags: Tag[];
     userRole: string;
+    shoppingCardLength: number = 0;
 
     constructor(
         private tagService: TagService,
         private router: Router,
         private route: ActivatedRoute,
         private store: Store<AppState>,
-        private tokenService: JwtTokenService) {
+        private tokenService: JwtTokenService,
+        private cookies: Cookies) {
         this.authState = this.store.select(selectAuthState);
         this.loadTags();
     }
@@ -53,14 +56,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authState.subscribe((state) => {
-            this.isUserAuthenticated = state.isAuthenticated;
-            const token: string = this.tokenService.getToken();
-            if (token) {
-                const decodedToken = this.tokenService.decodeToken(token);
-                this.userRole = decodedToken.roles.toString();
-            }
-        });
+        this.initUserData();
         let debouncedTagNameChanges = debounce((value) => {
             const filterValue = value.toLowerCase();
             let tagParams: TagParams = {
@@ -108,5 +104,36 @@ export class HeaderComponent implements OnInit {
 
     ifCertificatesRoute() {
         return this._routeUrl.split('?')[0] == '/certificates';
+    }
+
+    initUserData(): void {
+        this.authState.subscribe((state) => {
+            this.isUserAuthenticated = state.isAuthenticated;
+            console.log(this.isUserAuthenticated);
+            if(state.user) {
+                const userId = state.user.id;
+                this.initShoppingCardLength(userId);
+            }
+            const token: string = this.tokenService.getToken();
+            if (token && this.isUserAuthenticated) {
+                const decodedToken = this.tokenService.decodeToken(token);
+                this.userRole = decodedToken.roles.toString();
+            } else {
+                this.userRole = undefined;
+            }
+        });
+    }
+
+    initShoppingCardLength(userId: number):void {
+        let shoppingCard = this.cookies.getObject('card_'+userId);
+        if(shoppingCard) {
+            this.shoppingCardLength = shoppingCard.length;
+        }
+        this.cookies.onChanges.subscribe(changes => {
+            shoppingCard = this.cookies.getObject('card_'+userId);
+            if(shoppingCard) {
+                this.shoppingCardLength = shoppingCard.length;
+            }
+        });
     }
 }

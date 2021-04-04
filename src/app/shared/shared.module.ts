@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { MatIconModule } from '@angular/material/icon'
@@ -7,12 +7,12 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatButtonModule } from '@angular/material/button'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { AppRoutingModule } from '../app-routing.module';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { FeaturesModule } from '../features/features.module'
 import { CoreModule } from '../core/core.module'
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
     declarations: [
@@ -37,7 +37,7 @@ import {MatBadgeModule} from '@angular/material/badge';
         MatButtonModule,
         MatIconModule,
         HeaderComponent,
-        MatAutocompleteModule   
+        MatAutocompleteModule
     ]
 })
 export class SharedModule { }

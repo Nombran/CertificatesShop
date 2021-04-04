@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   // apiUrl: "https://certificates-boot.herokuapp.com/api/v1/"
-  apiUrl: "http://localhost:8081/api/v1/"
+  // apiUrl: "http://localhost:8081/api/v1/"
+  apiUrl: "http://ec2-3-127-248-65.eu-central-1.compute.amazonaws.com:8081/api/v1/"
+
 };
 
 /*
