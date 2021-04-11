@@ -1,8 +1,9 @@
 <main>
     <div *ngIf="certificateData" class="main-info-container">
-        <img src="../../../../../assets/draw.jpg">
-        <h2>Item detailed description</h2>
-        <span>{{certificateData.description}}</span>
+        <span id="creator">Создал: {{user.firstName}} {{user.lastName}}</span>
+        <img src="../../../../../assets/project.jpg">
+        <h2>Постановка задачи</h2>
+        <span id="description">{{certificateData.description}}</span>
     </div>
     <certificate-card *ngIf="certificateData" [certificateData]="certificateData"></certificate-card>
 </main>

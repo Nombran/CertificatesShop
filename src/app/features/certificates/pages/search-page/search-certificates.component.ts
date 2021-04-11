@@ -5,6 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CertificateParams, CertificateService, CertificateOrderBy } from 'src/app/core/services/certificates.service';
 import { debounce } from 'lodash'
 import { JwtTokenService } from 'src/app/core/services/jwt-token.service';
+import {Store} from "@ngrx/store";
+import { AppState, selectAuthState } from 'src/app/store/app.states';
+import {Observable} from "rxjs";
+import {User} from "../../../../models/user";
 
 @Component({
   selector: 'certificates-page',
@@ -18,43 +22,64 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   private scrollContainer: any;
   isLoading: boolean = false;
   private nextPageLink: string;
+  authState: Observable<any>;
+  user: User;
 
   constructor(
     private certificateService: CertificateService,
     private route: ActivatedRoute,
-    private tokenService: JwtTokenService 
-  ) { }
+    private tokenService: JwtTokenService,
+    private router: Router,
+    private store: Store<AppState>
+  ) {
+    this.authState = this.store.select(selectAuthState);
+  }
 
   ngAfterViewInit(): void {
     this.scrollContainer = this.scrollFrame.nativeElement;
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
-      let textPart: string = params.get('textPart');
-      let tagNames: string[] = params.getAll('tagNames');
-      let certificateParams: CertificateParams = { textPart: textPart, tagNames: tagNames };
-      if(this._userRole == 'ROLE_USER') {
-          certificateParams.statuses = ['ACTIVE'];
-      }
-      this.certificateService.loadCertificates(certificateParams).subscribe((certificates: any) => {
-        if (certificates._embedded) {
-          this.certificates = certificates._embedded.certificateDtoList;
-          this.cards.changes.subscribe(() => {
-            if (this.cards.length == this.certificates.length) {
-              this.showCertificates();
-            }
-          });
-          if (certificates._links.next) {
-            this.nextPageLink = certificates._links.next.href;
-          } else {
-            this.nextPageLink = null;
-          }
-        } else {
-          this.certificates = [];
+    console.log("created")
+    if(this.router.url == "/certificates/created") {
+      this.authState.subscribe((state) => {
+        if(state.user) {
+          this.user = state.user;
+          this.certificateService.loadCreatedCertificates(this.user.id).subscribe((certificates: any) => this.processCertificates(certificates));
         }
       });
-    })
+
+    } else {
+      this.route.queryParamMap.subscribe((params) => {
+        let textPart: string = params.get('textPart');
+        let tagNames: string[] = params.getAll('tagNames');
+        let certificateParams: CertificateParams = {textPart: textPart, tagNames: tagNames};
+        if (this._userRole == 'ROLE_USER') {
+          certificateParams.statuses = ['ACTIVE'];
+        }
+        this.certificateService.loadCertificates(certificateParams).subscribe((certificates: any) => this.processCertificates(certificates));
+      })
+    }
+  }
+
+  private processCertificates(certificates: any) {
+    console.log(certificates)
+    if (certificates._embedded) {
+      this.certificates = certificates._embedded.serviceDtoList;
+      this.cards.changes.subscribe(() => {
+        if (this.cards.length == this.certificates.length) {
+          this.showCertificates();
+        }
+      });
+      if (certificates._links.next) {
+        this.nextPageLink = certificates._links.next.href;
+      } else {
+        this.nextPageLink = null;
+      }
+    } else {
+      this.certificates = [];
+    }
+
   }
 
   private debounceCertificateLoading = debounce(() => {
@@ -64,7 +89,7 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
         this.scrollBottom();
         setTimeout(() => {
           this.certificateService.loadNextPage(this.nextPageLink).subscribe((certificates: any) => {
-            this.certificates = this.certificates.concat(certificates._embedded.certificateDtoList);
+            this.certificates = this.certificates.concat(certificates._embedded.serviceDtoList);
             if (certificates._links.next) {
               this.nextPageLink = certificates._links.next.href;
             } else {
@@ -91,7 +116,7 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   }
 
   scrollBottom() {
-      
+
   }
 
   get _userRole(): string {

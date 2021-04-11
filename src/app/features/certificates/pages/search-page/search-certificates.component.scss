@@ -19,6 +19,41 @@ main {
     display: none;
 }
 
+#info-con {
+  background-size: cover;
+  background-position: -20%;
+  background-image: url("../../../../../assets/city.jfif");
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  background-color: rgb(110, 110, 110);
+  #info-text-con {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    #head-text {
+      display: flex;
+      align-items: flex-end;
+      font-weight: bold;
+      font-size: 25pt;
+      color: rgb(71, 255, 0);
+      width: 50%;
+      height: 50%;
+      line-height: 120%;
+    }
+    #low-text {
+      padding-top: 20px;
+      font-size: 13pt;
+      width: 50%;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
+
 .certificates-container {
     @include flex-row;
     box-sizing: border-box;

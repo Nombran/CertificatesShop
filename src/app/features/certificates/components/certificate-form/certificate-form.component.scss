@@ -12,7 +12,7 @@ form {
         padding-left: 5%;
         width: 95%;
         height: $header-height;
-        background-color: rgb(53, 53, 53);
+      background-image: url("../../../../../assets/background.jpg");
         color: white;
         font-weight: bold;
         .inactive {
@@ -62,8 +62,8 @@ form {
     ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
         color: green !important;
     }
-    .disabled { 
-        position : relative; 
+    .disabled {
+        position : relative;
         color    : grey;
     }
     .disabled:after {

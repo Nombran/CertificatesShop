@@ -12,7 +12,8 @@
     -moz-transition: background 1s;
     -ms-transition: background 1s;
     -o-transition: background 1s;
-    background-image: url("../../../../../assets/draw.jpg");
+    background-image: url("../../../../../assets/project.jpg");
+    background-position: -10%;
     &:hover {
         background-color: rgba(224, 224, 224, 0.486);
         background-blend-mode: lighten;

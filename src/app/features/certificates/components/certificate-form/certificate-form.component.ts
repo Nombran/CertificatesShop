@@ -11,6 +11,9 @@ import { Certificate, CertificateStatus } from 'src/app/models/certificate';
 import { CertificateService } from 'src/app/core/services/certificates.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import {Observable} from "rxjs"
+import { AppState, selectAuthState } from 'src/app/store/app.states';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'certificate-form',
@@ -22,17 +25,21 @@ export class CertificateFormComponent implements OnInit {
     @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
     @ViewChild('auto') matAutocomplete: MatAutocomplete;
     @Input() certificateForEdit: Certificate;
+    authState: Observable<any>;
     certificateForEditStatus: string;
     separatorKeysCodes: number[] = [ENTER, COMMA];
     tags: Tag[] = [];
     loadedTags: Tag[] = [];
+    userId: number;
 
     constructor(private formBuilder: FormBuilder,
         private tagService: TagService,
         private certificateService: CertificateService,
-        private _snackBar: MatSnackBar) {
+        private _snackBar: MatSnackBar,
+        private store: Store<AppState>) {
         this.createForm();
         this.loadTags();
+        this.authState = this.store.select(selectAuthState);
     }
 
     ngOnInit(): void {
@@ -50,6 +57,11 @@ export class CertificateFormComponent implements OnInit {
             this.certificateForEditStatus = this.certificateForEdit.status;
             this.fillInDataForEdit();
         }
+      this.authState.subscribe((state) => {
+        if(state.user) {
+          this.userId = state.user.id;
+        }
+      });
     }
 
     fillInDataForEdit() {
@@ -83,7 +95,7 @@ export class CertificateFormComponent implements OnInit {
                 [
                     Validators.required,
                     Validators.minLength(5),
-                    Validators.maxLength(150)
+                    Validators.maxLength(3000)
                 ]
             ],
             duration: ['',
@@ -169,7 +181,8 @@ export class CertificateFormComponent implements OnInit {
             duration: duration,
             price: price,
             status: status,
-            tags: tags
+            tags: tags,
+            creatorId: this.userId
         }
         return certificate;
     }

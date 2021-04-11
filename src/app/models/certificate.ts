@@ -9,10 +9,12 @@ export interface Certificate {
     status: string;
     count?: number;
     tags: Array<string>;
+    creatorId: number;
+    developerId?: number;
 }
 
 export enum CertificateStatus {
-    PUBLISHED, 
+    PUBLISHED,
     ACTIVE,
     INACTIVE
 }

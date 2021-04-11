@@ -1,9 +1,16 @@
 <main #scrollframe>
+    <div id="info-con">
+      <span id="info-text-con">
+        <span id="head-text">Отдайте задачи фрилансерам и освободите время для важного</span>
+        <span id="low-text">Разработчики, дизайнеры и другие профессионалы ИТ-рынка готовы выполнить вашу задачу сейчас.</span>
+      </span>
+      <div><img src="../../../../../assets/itpng.png" height="320"/></div>
+    </div>
     <tag-panel></tag-panel>
     <div class="certificates-container">
         <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate"></certificate-card>
         <div class="empty-result" *ngIf="certificates" [style.display] = "certificates == 0 ? 'inherit' : 'none'">
-            <span>No results were found for your search</span>
+            <span>По вашему запросу ничего не найдено</span>
             <img src="../../../../../assets/pngguru.com.png">
         </div>
     </div>

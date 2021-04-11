@@ -63,6 +63,11 @@ export class CertificateService {
         return this.http.get(this.apiUrl + 'certificates', { params: httpParams });
     }
 
+    loadCreatedCertificates(userId: number) {
+      return this.http.get(this.apiUrl + 'users/' + userId + '/services/created');
+    }
+
+
     loadNextPage(nextPageLink: string) {
         return this.http.get(nextPageLink);
     }

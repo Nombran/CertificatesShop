@@ -29,6 +29,10 @@ const routes: Routes = [
     path: 'certificates',
     children: [
       {
+        path: 'created',
+        component: SearchCertificatesPage,
+      },
+      {
         path: 'create',
         component: CreateCertificatePageComponent,
         canActivate: [AdminGuard]

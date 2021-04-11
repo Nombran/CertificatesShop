@@ -4,7 +4,7 @@
       class="status">{{certificateData.status}}
     </span>
     <div class="certificate-image">
-        <img src="../../../../../assets/draw.jpg" alt="">
+        <img src="../../../../../assets/develop.jpg" alt="">
     </div>
     <div class="certificate-info">
         <div class="first-row">
@@ -21,8 +21,8 @@
         <div class="line"></div>
         <div class="third-row">
             <span class="price">{{certificateData.price}}$</span>
-            <input *ngIf="role != 'ROLE_ADMIN'" type="button" value="Add to card" (click)="addToCard($event)">
-            <input class="edit-button" *ngIf="role == 'ROLE_ADMIN'" type="button" value="Edit"
+            <input *ngIf="role != 'ROLE_ADMIN'" type="button" value="Добавить в корзину" (click)="addToCard($event)">
+            <input class="edit-button" *ngIf="role == 'ROLE_ADMIN'" type="button" value="Изменить"
                 (click)="onEdit(certificateData)">
         </div>
     </div>
