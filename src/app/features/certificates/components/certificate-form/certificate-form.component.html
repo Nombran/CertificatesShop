@@ -2,8 +2,6 @@
     <div class="container-header">
         <span *ngIf="!certificateForEdit">Создать новую услугу</span>
         <span *ngIf="certificateForEdit">Изменить услугу</span>
-        <span *ngIf="certificateForEditStatus == 'INACTIVE'" class="inactive">*Нельзя изменить неактивную услугу</span>
-        <span *ngIf="certificateForEditStatus == 'ACTIVE'" class="active">*Активная услуга может быть переведена только в неактивную</span>
     </div>
     <div class="input-container">
         <div class="first-row">
@@ -15,7 +13,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Описание</mat-label>
-                    <input autocomplete="off" matInput formControlName="certificateDescription">
+                    <textarea autocomplete="off" matInput formControlName="certificateDescription"></textarea>
                     <mat-error *ngIf="_certificateDescription.invalid">Описание не должно превышать 3000 символов</mat-error>
                 </mat-form-field>
                 <mat-form-field class="tag-list" [class.disabled]= "certificateForEditStatus == 'INACTIVE' || certificateForEditStatus == 'ACTIVE'">
@@ -37,29 +35,9 @@
             </div>
             <div class="input-col">
                 <mat-form-field appearance="fill">
-                    <mat-label>Длительность</mat-label>
-                    <input autocomplete="off" type="number" matInput formControlName="duration">
-                    <mat-error *ngIf="_duration.invalid">Длительность должна быть от 1 до 100</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
                     <mat-label>Стоимость</mat-label>
                     <input autocomplete="off" type="number" matInput formControlName="price">
                     <mat-error *ngIf="_price.invalid">Стоимость должна быть от 1 до 2000</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Статус услуги</mat-label>
-                    <mat-select formControlName="status">
-                        <mat-option *ngIf="!certificateForEditStatus || certificateForEditStatus == 'PUBLISHED'" value="PUBLISHED">
-                            Published
-                        </mat-option>
-                        <mat-option *ngIf="!certificateForEditStatus || certificateForEditStatus == 'PUBLISHED'" value="ACTIVE">
-                            Active
-                        </mat-option>
-                        <mat-option *ngIf="certificateForEditStatus" value="INACTIVE">
-                            Inactive
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="_status.invalid">Статус это обязательное поле</mat-error>
                 </mat-form-field>
                 <input *ngIf="!certificateForEdit" (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
                 <input *ngIf="certificateForEdit" (click)="onEdit()" type="button" value="Save" [disabled]="certificateForm.invalid || certificateForEditStatus == 'INACTIVE'">

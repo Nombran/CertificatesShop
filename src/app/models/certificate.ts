@@ -2,15 +2,13 @@ export interface Certificate {
     id?: number;
     name: string;
     description: string;
-    price: number;
+    price: string;
     creationDate?: Date;
     modificationDate?: Date;
-    duration: number;
-    status: string;
-    count?: number;
     tags: Array<string>;
     creatorId: number;
     developerId?: number;
+    desiredDevelopers: [];
 }
 
 export enum CertificateStatus {

@@ -54,7 +54,6 @@ export class CertificateFormComponent implements OnInit {
             debouncedTagNameChanges(value);
         })
         if (this.certificateForEdit) {
-            this.certificateForEditStatus = this.certificateForEdit.status;
             this.fillInDataForEdit();
         }
       this.authState.subscribe((state) => {
@@ -65,17 +64,9 @@ export class CertificateFormComponent implements OnInit {
     }
 
     fillInDataForEdit() {
-        if (this.certificateForEditStatus != 'PUBLISHED' && this.certificateForEditStatus) {
-            this.certificateForm.disable();
-            if (this.certificateForEditStatus == 'ACTIVE') {
-                this._status.enable();
-            }
-        }
         this._certificateName.setValue(this.certificateForEdit.name);
         this._certificateDescription.setValue(this.certificateForEdit.description);
-        this._duration.setValue(this.certificateForEdit.duration);
         this._price.setValue(this.certificateForEdit.price);
-        this._status.setValue(this.certificateForEdit.status);
         this.tags = this.certificateForEdit.tags.map(name => {
             let tag = { id: null, name: name };
             return tag;
@@ -98,13 +89,6 @@ export class CertificateFormComponent implements OnInit {
                     Validators.maxLength(3000)
                 ]
             ],
-            duration: ['',
-                [
-                    Validators.required,
-                    Validators.min(1),
-                    Validators.max(100)
-                ],
-            ],
             price: ['',
                 [
                     Validators.required,
@@ -112,7 +96,6 @@ export class CertificateFormComponent implements OnInit {
                     Validators.max(2000)
                 ]
             ],
-            status: ['', [Validators.required]],
             tagsControl: ['']
         });
     }
@@ -125,10 +108,6 @@ export class CertificateFormComponent implements OnInit {
         return this.certificateForm.get('certificateDescription');
     }
 
-    get _duration() {
-        return this.certificateForm.get('duration');
-    }
-
     get _price() {
         return this.certificateForm.get('price');
     }
@@ -136,11 +115,6 @@ export class CertificateFormComponent implements OnInit {
     get _tags() {
         return this.certificateForm.get('tagsControl');
     }
-
-    get _status() {
-        return this.certificateForm.get('status');
-    }
-
     selected(tag: Tag): void {
         if (!this.tags.find(elem => elem.name == tag.name)) {
             this.tags.push(tag);
@@ -171,16 +145,12 @@ export class CertificateFormComponent implements OnInit {
     getFormCertificate(): Certificate {
         const name: string = this._certificateName.value;
         const description: string = this._certificateDescription.value;
-        const duration: number = this._duration.value;
         const price: number = this._price.value;
-        const status: string = this._status.value;
         const tags: string[] = this.tags.map(tag => tag.name);
         const certificate: Certificate = {
             name: name,
             description: description,
-            duration: duration,
-            price: price,
-            status: status,
+            price: `${price}`,
             tags: tags,
             creatorId: this.userId
         }
