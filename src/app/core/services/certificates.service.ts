@@ -89,12 +89,6 @@ export class CertificateService {
         let card: Certificate[] = this.getCertificateCard(userId);
         let date = new Date(Date.now() + 86400e3);
         let certificateInCard = card.find(elem => elem.id == certificate.id);
-        if (certificateInCard) {
-            certificateInCard.count++;
-        } else {
-            certificate.count = 1;
-            card.push(certificate);
-        }
         this.clearCard(userId);
         this.cookies.set('card_' + userId, JSON.stringify(card), new CookieOptions({
             expires: date,
@@ -116,14 +110,6 @@ export class CertificateService {
     removeFromCard(certificate: Certificate, userId: number): void {
         let card: Certificate[] = this.getCertificateCard(userId);
         let certificateFromCard = card.find(elem => elem.id == certificate.id);
-        if (certificateFromCard) {
-            if (certificateFromCard.count > 1) {
-                certificateFromCard.count--;
-            } else {
-                let index = card.findIndex(elem => elem.id == certificateFromCard.id);
-                card.splice(index, 1);
-            }
-        }
         let date = new Date(Date.now() + 86400e3);
         this.clearCard(userId);
         this.cookies.set('card_' + userId, JSON.stringify(card), new CookieOptions({

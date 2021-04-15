@@ -2,6 +2,7 @@ import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild, ViewChild
 import {ActivatedRoute, Router} from '@angular/router';
 import {Certificate} from '../../../../models/certificate';
 import {CertificateCardComponent} from '../../components/certificate-card/certificate-card.component'
+import {AuthenticationService} from '../../../../core/services/authentication.service';
 import {CertificateService} from '../../../../core/services/certificates.service'
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -14,25 +15,36 @@ import {User} from "../../../../models/user";
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
-export class ItemDetailsPageComponent implements AfterViewChecked {
+export class ItemDetailsPageComponent{
   certificateData: Certificate;
+  user: User;
   @ViewChild(CertificateCardComponent) card: CertificateCardComponent;
   authState: Observable<any>;
-  user: User;
+
 
   constructor(
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private certificateService: CertificateService,
     private router: Router,
     private store: Store<AppState>
   ) {
-    this.authState = this.store.select(selectAuthState);
     this.route.paramMap.subscribe(
       (params => {
         const certificateId = Number(params.get('id'));
         this.certificateService.findById(certificateId).subscribe(
           (response: Certificate) => {
             this.certificateData = response
+            console.log(this.certificateData)
+            this.authenticationService.findUser(this.certificateData.creatorId).subscribe(
+              (response: User) => {
+                this.user = response
+                console.log(this.user)
+              },
+              (error) => {
+                this.router.navigateByUrl('/certificates')
+              }
+            )
           },
           (error) => {
             this.router.navigateByUrl('/certificates')
@@ -40,16 +52,7 @@ export class ItemDetailsPageComponent implements AfterViewChecked {
         )
       })
     );
-  }
+    this.authState = this.store.select(selectAuthState);
 
-  ngAfterViewChecked(): void {
-    if (this.card) {
-      this.card.showComponent();
-    }
-    this.authState.subscribe((state) => {
-      if (state.user) {
-        this.user = state.user;
-      }
-    });
   }
 }

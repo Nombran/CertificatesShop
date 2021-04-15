@@ -32,12 +32,6 @@ export class OrderDetailsPageComponent implements OnInit {
                             this.certificateService.findById(id).subscribe(
                                 (response: Certificate) => {
                                     let certificate = this.certificates.find(elem => elem.id == id);
-                                    if (certificate) {
-                                        certificate.count++;
-                                    } else {
-                                        response.count = 1;
-                                        this.certificates.push(response);
-                                    }
                                 },
                                 (error) => { }
                             )

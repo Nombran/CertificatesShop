@@ -39,7 +39,6 @@ export class ShoppingCardPageComponent implements OnInit {
     calculateTotalPrice() {
         this.totalPrice = 0;
         Array.prototype.forEach.call(this.card, (certificate: Certificate) => {
-            this.totalPrice += certificate.price * certificate.count;
             this.totalPrice = Number.parseFloat(this.totalPrice.toFixed(2));
         });
     }
@@ -60,11 +59,6 @@ export class ShoppingCardPageComponent implements OnInit {
 
     checkout() {
         let order: Order = { certificatesIds: [] }
-        Array.prototype.forEach.call(this.card, (certificate: Certificate) => {
-            for (let i = 0; i < certificate.count; i++) {
-                order.certificatesIds.push(certificate.id);
-            }
-        });
         this.orderService.createOrder(order).subscribe(
             (respone) => {
                 this.certificateService.clearCard(this.userId);

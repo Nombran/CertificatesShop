@@ -8,7 +8,7 @@ export interface Certificate {
     tags: Array<string>;
     creatorId: number;
     developerId?: number;
-    desiredDevelopers: [];
+    desiredDevelopers?: [];
 }
 
 export enum CertificateStatus {

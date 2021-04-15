@@ -4,5 +4,10 @@ export class User {
     lastName: string;
     login: string;
     password: string;
+    salary: number;
+    skills?: [];
+    specialization?: string;
+    about?: string;
+    activity?: string;
+    contacts?: string;
   }
-  

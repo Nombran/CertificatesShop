@@ -1,9 +1,53 @@
 <main>
-    <div *ngIf="certificateData" class="main-info-container">
-        <span id="creator">Создал: {{user.firstName}} {{user.lastName}}</span>
-        <img src="../../../../../assets/project.jpg">
-        <h2>Постановка задачи</h2>
-        <span id="description">{{certificateData.description}}</span>
+    <div *ngIf="certificateData && user" class="main-info-container">
+        <div class="request-container">
+          <h2 class = "request-name">{{certificateData.name}}</h2>
+          <div class = "price-container">
+            <span class="price">{{certificateData.price}}$ за проект</span>
+          </div>
+          <div>
+            <span class = "request-date">{{certificateData.creationDate}}</span>
+          </div>
+          <div class="tags-container">
+            <span class="task-tags">{{certificateData.tags}}</span>
+          </div>
+          <div class = "description-container">
+            <span class="description">{{certificateData.description}}</span>
+          </div>
+        </div>
     </div>
-    <certificate-card *ngIf="certificateData" [certificateData]="certificateData"></certificate-card>
+    <aside class="second-column">
+      <div class = "profile-block">
+        <a href="#" class="avatar-block">
+          <img src="../../../../../assets/avatar.png" alt="">
+        </a>
+        <div class="full-name">
+          <a href="#">{{user.firstName}} {{user.lastName}}</a>
+        </div>
+        <div class="role-container">
+          <div class="role">
+            Заказчик
+          </div>
+        </div>
+      </div>
+      <div class="profile-statistic">
+        <div class="title">Статистика заказчика</div>
+        <div class="row">
+          <div>Всего заказов</div>
+          <div>1</div>
+        </div>
+        <div class="row">
+          <div>Завершённых заказов</div>
+          <div>0</div>
+        </div>
+        <div class="divide-row">
+          <div>Зарегистрирован</div>
+          <div>1</div>
+        </div>
+      </div>
+      <div class="profile-statistic">
+        <div class="title">Контакты заказчика</div>
+        <div>{{user.contacts}}</div>
+      </div>
+    </aside>
 </main>

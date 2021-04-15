@@ -29,5 +29,8 @@ export class AuthenticationService {
         return this.http.get(url);
     }
 
-    
+    findUser(id) {
+      const url = environment.apiUrl + `users/${id}`;
+      return this.http.get(url);
+  }
 }

@@ -4,7 +4,6 @@
         <h1>{{certificate.name}}</h1>
         <span>{{certificate.description}}</span>
     </div>
-    <span class="price">${{certificate.price}} <span class="count">x {{certificate.count}}</span></span>
     <i *ngIf="ifEditable" (click)="add()" class="add material-icons md-24 md-dark">add</i>
     <i *ngIf="ifEditable" (click)="remove()" class="remove material-icons md-24 md-dark">remove</i>
 </div>
