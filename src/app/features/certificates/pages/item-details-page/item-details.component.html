@@ -1,7 +1,12 @@
 <main>
-    <div *ngIf="certificateData && user" class="main-info-container">
+    <div class="column">
+      <div *ngIf="certificateData && user" class="main-info-container">
         <div class="request-container">
-          <h2 class = "request-name">{{certificateData.name}}</h2>
+          <div class="row">
+            <h2 class = "request-name">{{certificateData.name}}</h2>
+            <span>{{certificateData.status}}</span>
+          </div>
+
           <div class = "price-container">
             <span class="price">{{certificateData.price}}$ за проект</span>
           </div>
@@ -15,14 +20,49 @@
             <span class="description">{{certificateData.description}}</span>
           </div>
         </div>
+        <div *ngIf="isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
+          <input class="button-approve" (click)="approve()" type="button" value="Откликнуться" >
+        </div>
+        <div *ngIf="!isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
+          <input class="button-approve" (click)="cancel(storeUser.id)" type="button" value="Отменить заявку" >
+        </div>
+      </div>
+      <div *ngIf="certificateData?.desiredDevelopers.length !== 0">
+        <span class="ready">Готовы взяться</span>
+        <div class="users-container">
+          <div *ngFor="let user of certificateData?.desiredDevelopers" class="user-card">
+            <div class="user-card-container">
+              <div class="row"><a href="#" class="avatar-block-user">
+                <img src="../../../../../assets/avatar.png" alt="">
+              </a>
+                <div class="full-name">
+                  <a href="#">{{user.firstName}} {{user.lastName}}</a>
+                </div>
+              </div>
+              <div>
+                <div *ngIf="user.skills.length !== 0" class="tags-container">
+                  <span *ngFor="let tag of user.skills" class="task-tags">{{tag}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok"  (click)="approveUser(user.id)" type="button" value="Принять" >
+                <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancel(user.id)" type="button" value="Отклонить" >
+              </div>
+
+            </div>
+          </div>
+      </div>
+      </div>
     </div>
+
+
     <aside class="second-column">
       <div class = "profile-block">
         <a href="#" class="avatar-block">
           <img src="../../../../../assets/avatar.png" alt="">
         </a>
         <div class="full-name">
-          <a href="#">{{user.firstName}} {{user.lastName}}</a>
+          <a href="#">{{user?.firstName}} {{user?.lastName}}</a>
         </div>
         <div class="role-container">
           <div class="role">
@@ -47,7 +87,7 @@
       </div>
       <div class="profile-statistic">
         <div class="title">Контакты заказчика</div>
-        <div>{{user.contacts}}</div>
+        <div>{{user?.contacts}}</div>
       </div>
     </aside>
 </main>

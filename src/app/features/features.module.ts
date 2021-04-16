@@ -21,7 +21,7 @@ import { CreateCertificatePageComponent } from './certificates/pages/create-page
 import { CertificateFormComponent } from './certificates/components/certificate-form/certificate-form.component'
 import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EditCertificatePageComponent } from './certificates/pages/edit-page/edit-page.component'
 import { ShoppingCardPageComponent } from './shopping-card/pages/shopping-card-page/shop-card.component';
 import { CertificateElementComponent } from './shopping-card/components/certificate-element/certificate-elem.component'
@@ -29,6 +29,7 @@ import { ItemDetailsPageComponent } from './certificates/pages/item-details-page
 import { OrderItemComponent } from './orders/components/order-item/order-item.component'
 import { PastOrdersPageComponent } from './orders/pages/past-orders/past-orders.component'
 import { OrderDetailsPageComponent } from './orders/pages/order-details/order-details.component'
+import {ProfilePageComponent} from './profile/pages/profile.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { OrderDetailsPageComponent } from './orders/pages/order-details/order-de
         TagPanelComponent,
         TagComponent,
         CreateTagFormComponent,
-        CreateTagPageComponent
+        CreateTagPageComponent,
+        ProfilePageComponent
     ],
     imports: [
         MatAutocompleteModule,

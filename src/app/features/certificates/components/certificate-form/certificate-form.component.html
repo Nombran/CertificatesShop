@@ -1,11 +1,11 @@
 <form [formGroup]="certificateForm">
     <div class="container-header">
-        <span *ngIf="!certificateForEdit">Создать новую услугу</span>
+      <div class="headers">
+        <span *ngIf="!certificateForEdit">Разместить заказ</span>
         <span *ngIf="certificateForEdit">Изменить услугу</span>
+      </div>
     </div>
     <div class="input-container">
-        <div class="first-row">
-            <div class="input-col">
                 <mat-form-field appearance="fill">
                     <mat-label>Название</mat-label>
                     <input autocomplete="off" matInput formControlName="certificateName">
@@ -32,8 +32,8 @@
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-            </div>
-            <div class="input-col">
+
+
                 <mat-form-field appearance="fill">
                     <mat-label>Стоимость</mat-label>
                     <input autocomplete="off" type="number" matInput formControlName="price">
@@ -41,7 +41,5 @@
                 </mat-form-field>
                 <input *ngIf="!certificateForEdit" (click)="onSubmit()" type="button" value="Create" [disabled]="certificateForm.invalid">
                 <input *ngIf="certificateForEdit" (click)="onEdit()" type="button" value="Save" [disabled]="certificateForm.invalid || certificateForEditStatus == 'INACTIVE'">
-            </div>
         </div>
-    </div>
 </form>

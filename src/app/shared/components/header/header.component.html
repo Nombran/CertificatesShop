@@ -19,7 +19,9 @@
   <div class="right-buttons-container">
     <i *ngIf="userRole == 'ROLE_USER' && isUserAuthenticated" class="material-icons md-24 md-dark" [matBadge]="shoppingCardLength" [matBadgeHidden]="shoppingCardLength == 0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
     <a *ngIf="!isUserAuthenticated" href="/login" id="signin">Войти</a>
+    <a *ngIf="isUserAuthenticated" (click)="profile()" id="profile">Профиль</a>
     <a *ngIf="isUserAuthenticated" (click)="logOut()" id="logout">Выйти</a>
+
     <span *ngIf="!isUserAuthenticated">|</span>
     <a *ngIf="!isUserAuthenticated" href="/registration">Зарегистрироваться</a>
   </div>

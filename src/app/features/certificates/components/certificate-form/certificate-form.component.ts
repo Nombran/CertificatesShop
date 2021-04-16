@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {Observable} from "rxjs"
 import { AppState, selectAuthState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'certificate-form',
@@ -36,9 +37,11 @@ export class CertificateFormComponent implements OnInit {
         private tagService: TagService,
         private certificateService: CertificateService,
         private _snackBar: MatSnackBar,
+                private router: Router,
         private store: Store<AppState>) {
         this.createForm();
         this.loadTags();
+
         this.authState = this.store.select(selectAuthState);
     }
 
@@ -146,13 +149,15 @@ export class CertificateFormComponent implements OnInit {
         const name: string = this._certificateName.value;
         const description: string = this._certificateDescription.value;
         const price: number = this._price.value;
+        const status: string = this.certificateForEdit? this.certificateForEdit.status : "PENDING"
         const tags: string[] = this.tags.map(tag => tag.name);
         const certificate: Certificate = {
             name: name,
             description: description,
             price: `${price}`,
             tags: tags,
-            creatorId: this.userId
+            creatorId: this.userId,
+            status: status
         }
         return certificate;
     }
@@ -164,6 +169,7 @@ export class CertificateFormComponent implements OnInit {
                 this.toogleSuccessBar("Certificate created successfully!");
                 this.certificateForm.reset();
                 this.tags = [];
+                this.router.navigate(['orders'])
             },
             (error) => {
                 this.toggleErrorBar("Certificate name already exists!");

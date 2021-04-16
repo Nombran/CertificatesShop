@@ -13,6 +13,7 @@ import { OrderDetailsPageComponent } from './features/orders/pages/order-details
 import { AdminGuard } from './core/guards/admin.guard';
 import { UserGuard } from './core/guards/user.guard'
 import { IsLoggedGuard } from './core/guards/is-logged.guard'
+import {ProfilePageComponent} from './features/profile/pages/profile.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationPageComponent,
     canActivate: [IsLoggedGuard]
+  },
+  {
+    path: ':id/profile',
+    component: ProfilePageComponent,
   },
   {
     path: 'certificates',

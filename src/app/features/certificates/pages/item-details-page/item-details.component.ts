@@ -20,6 +20,8 @@ export class ItemDetailsPageComponent{
   user: User;
   @ViewChild(CertificateCardComponent) card: CertificateCardComponent;
   authState: Observable<any>;
+  storeUser: User;
+  isButtonVisible: boolean = true;
 
 
   constructor(
@@ -29,12 +31,20 @@ export class ItemDetailsPageComponent{
     private router: Router,
     private store: Store<AppState>
   ) {
+    this.authState = this.store.select(selectAuthState);
+    this.authState.subscribe((state) => {
+      this.storeUser = state.user;
+    })
     this.route.paramMap.subscribe(
       (params => {
         const certificateId = Number(params.get('id'));
         this.certificateService.findById(certificateId).subscribe(
           (response: Certificate) => {
             this.certificateData = response
+            if (this.certificateData.desiredDevelopers.find(user=>user.id === this.storeUser.id)) {
+              console.log('if')
+              this.isButtonVisible = false;
+            }
             console.log(this.certificateData)
             this.authenticationService.findUser(this.certificateData.creatorId).subscribe(
               (response: User) => {
@@ -52,7 +62,32 @@ export class ItemDetailsPageComponent{
         )
       })
     );
+
+
     this.authState = this.store.select(selectAuthState);
 
+  }
+  approve () {
+    this.certificateService.addDesiredDev(this.storeUser.id, this.certificateData.id).subscribe(
+      (response: Response) => {
+        this.certificateData.desiredDevelopers.push(this.storeUser)
+        this.isButtonVisible = false;
+      }
+    )
+  }
+  cancel (userId) {
+    this.certificateService.deleteDesiredDev(userId, this.certificateData.id).subscribe(
+      (response: Response) => {
+        this.certificateData.desiredDevelopers = this.certificateData.desiredDevelopers.filter(user => user.id !== this.storeUser.id)
+        this.isButtonVisible = true;
+      }
+    )
+  }
+  approveUser (id) {
+    this.certificateService.addDevelop(id, this.certificateData.id).subscribe(
+      (response: Response) => {
+
+      }
+    )
   }
 }

@@ -121,4 +121,16 @@ export class CertificateService {
     clearCard(userId: number): void {
         this.cookies.remove('card_' + userId);
     }
+    addDesiredDev(userId, certificateId) {
+      const url = this.apiUrl + 'certificates/' + certificateId + '/desired-devs/' + userId;
+      return this.http.post(url, {}) ;
+    }
+    deleteDesiredDev(userId, certificateId) {
+      const url = this.apiUrl + 'certificates/' + certificateId + '/desired-devs/' + userId;
+      return this.http.delete(url) ;
+    }
+    addDevelop (userId, certificateId) {
+      const url = this.apiUrl + `certificates/${certificateId}/dev/${userId}`;
+      return this.http.post(url, {}) ;
+    }
 }

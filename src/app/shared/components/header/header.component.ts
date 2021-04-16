@@ -84,6 +84,10 @@ export class HeaderComponent implements OnInit {
     public logOut(): void {
         this.store.dispatch(new LogOut());
     }
+    public profile(): void {
+      const url = 2 + '/profile';
+      this.router.navigateByUrl(url);
+    }
 
     get _routeUrl() {
         return this.router.url;
