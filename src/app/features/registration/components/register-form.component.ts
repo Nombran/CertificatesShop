@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { AppState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
@@ -6,6 +6,7 @@ import { SignUp } from 'src/app/store/actions/auth.actions';
 import {Tag} from '../../../models/tag';
 import {TagParams, TagService} from '../../../core/services/tag.service';
 import { debounce } from 'lodash'
+import {User} from '../../../models/user';
 
 @Component({
     selector: 'register-form',
@@ -14,6 +15,7 @@ import { debounce } from 'lodash'
 })
 export class RegisterFormComponent implements OnInit {
     @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+    @Input() userForEdit: User;
     registerForm: FormGroup;
     tags: Tag[] = [];
     loadedTags: Tag[] = [];
@@ -34,9 +36,25 @@ export class RegisterFormComponent implements OnInit {
       }
       this.loadTags(tagParams);
     }, 500)
+      if (this.userForEdit) {
+        this.fillInDataForEdit();
+      }
     this._tags.valueChanges.subscribe((value) => {
       debouncedTagNameChanges(value);
     })
+  }
+  fillInDataForEdit() {
+    this._firstName.setValue(this.userForEdit.firstName);
+    this._lastName.setValue(this.userForEdit.lastName);
+    this._login.setValue(this.userForEdit.login);
+    this._contacts.setValue(this.userForEdit.contacts);
+    this._aboutMySelf.setValue(this.userForEdit.about);
+    this._reward.setValue(this.userForEdit.salary);
+    this._sphere.setValue(this.userForEdit.activity);
+    this.tags = this.userForEdit.skills.map(name => {
+      let tag = { id: null, name: name };
+      return tag;
+    });
   }
 
   private createForm() {

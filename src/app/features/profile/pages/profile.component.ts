@@ -1,8 +1,11 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild, ViewChildren} from '@angular/core'
+import {AfterViewChecked, AfterViewInit, Component, Input, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState, selectAuthState} from "../../../store/app.states";
+import {Certificate} from '../../../models/certificate';
+import {AuthenticationService} from '../../../core/services/authentication.service';
+import {User} from '../../../models/user';
 
 
 @Component({
@@ -12,20 +15,17 @@ import {AppState, selectAuthState} from "../../../store/app.states";
 })
 export class ProfilePageComponent {
   authState: Observable<any>;
+  storeUser: User;
 
   constructor(
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<AppState>
   ) {
-    this.route.paramMap.subscribe(
-      (params => {
-        const certificateId = Number(params.get('id'));
-      })
-    );
-
-
     this.authState = this.store.select(selectAuthState);
-
-  }
+    this.authState.subscribe((state) => {
+      this.storeUser = state.user;
+    })
+      }
 }

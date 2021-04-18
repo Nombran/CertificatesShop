@@ -21,15 +21,14 @@ main {
 
 #info-con {
   background-size: cover;
-  background-position: -20%;
-  background-image: url("../../../../../assets/city.jfif");
+  background-position-y: 100%;
+  background-image: url("../../../../../assets/background.svg");
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
   justify-content: center;
   height: 500px;
-  background-color: rgb(110, 110, 110);
   #info-text-con {
     display: flex;
     flex-direction: column;

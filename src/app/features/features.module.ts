@@ -30,6 +30,7 @@ import { OrderItemComponent } from './orders/components/order-item/order-item.co
 import { PastOrdersPageComponent } from './orders/pages/past-orders/past-orders.component'
 import { OrderDetailsPageComponent } from './orders/pages/order-details/order-details.component'
 import {ProfilePageComponent} from './profile/pages/profile.component';
+import {ProfileFormComponent} from './profile/components/profile-form.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import {ProfilePageComponent} from './profile/pages/profile.component';
         TagComponent,
         CreateTagFormComponent,
         CreateTagPageComponent,
-        ProfilePageComponent
+        ProfilePageComponent,
+        ProfileFormComponent
     ],
     imports: [
         MatAutocompleteModule,
