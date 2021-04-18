@@ -1,4 +1,4 @@
-<div class="certificate" [style.opacity]="opacity" (click)="certificateClick()">
+<div *ngIf="buttonValue === certificateData.status" class="certificate" [style.opacity]="opacity" (click)="certificateClick()">
     <span
      *ngIf="role == 'ROLE_ADMIN'"
       class="status">{{certificateData.status}}

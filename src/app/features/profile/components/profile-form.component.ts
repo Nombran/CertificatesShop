@@ -24,9 +24,11 @@ export class ProfileFormComponent implements OnInit {
     constructor(
         private tagService: TagService,
         private formBuilder: FormBuilder,
-        private store: Store<AppState>) {
+        private store: Store<AppState>)
+    {
         this.createForm();
         this.loadTags();
+
     }
     ngOnInit(): void {
     const debouncedTagNameChanges = debounce((value) => {

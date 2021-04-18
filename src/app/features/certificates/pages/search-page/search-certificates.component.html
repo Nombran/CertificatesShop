@@ -7,8 +7,13 @@
       <div><img src="../../../../../assets/itpng.png" height="320"/></div>
     </div>
     <tag-panel></tag-panel>
+  <div>
+    <input (click)="changeRequestDisplay(buttonPending)" type="button" value="Все заказы" >
+    <input (click)="changeRequestDisplay(buttonProgress)" type="button" value="Мои активные заказы" >
+    <input (click)="changeRequestDisplay(buttonComplete)" type="button" value="Мои завершённые заказы" >
+  </div>
     <div class="certificates-container">
-        <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate"></certificate-card>
+        <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate" [buttonValue]="buttonValue"></certificate-card>
         <div class="empty-result" *ngIf="certificates" [style.display] = "certificates == 0 ? 'inherit' : 'none'">
             <span>По вашему запросу ничего не найдено</span>
             <img src="../../../../../assets/pngguru.com.png">

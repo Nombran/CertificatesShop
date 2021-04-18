@@ -9,6 +9,7 @@ import {Store} from "@ngrx/store";
 import { AppState, selectAuthState } from 'src/app/store/app.states';
 import {Observable} from "rxjs";
 import {User} from "../../../../models/user";
+import {AuthenticationService} from '../../../../core/services/authentication.service';
 
 @Component({
   selector: 'certificates-page',
@@ -21,11 +22,16 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   certificates: Certificate[];
   private scrollContainer: any;
   isLoading: boolean = false;
+  buttonValue: String = "PENDING"
+  buttonPending: String = "PENDING"
+  buttonProgress: String = "IN_PROGRESS"
+  buttonComplete: String = "COMPLETE"
   private nextPageLink: string;
   authState: Observable<any>;
   user: User;
 
   constructor(
+    private authenticationService: AuthenticationService,
     private certificateService: CertificateService,
     private route: ActivatedRoute,
     private tokenService: JwtTokenService,
@@ -118,7 +124,9 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   scrollBottom() {
 
   }
-
+  changeRequestDisplay(type) {
+    this.buttonValue = type
+  }
   get _userRole(): string {
       const token = this.tokenService.getToken();
       if(token) {

@@ -3,18 +3,18 @@
         <span class="user"></span>
     </div>
     <form [formGroup]="loginForm">
-        <input formControlName="login" type="text" placeholder="Login">
+        <input formControlName="login" type="text" placeholder="Логин">
         <div *ngIf="_login.invalid && (_login.touched || _login.dirty)">
-            <span class="error-message" *ngIf="_login.errors?.minlength">Login must be longer than 5</span>
+            <span class="error-message" *ngIf="_login.errors?.minlength">Login must be longer than 3</span>
             <span class="error-message" *ngIf="_login.errors?.maxlength">Login must be no longer than 16</span>
             <span class="error-message" *ngIf="_login.errors?.required">Field is required</span>
         </div>
-        <input formControlName="password" type="text" placeholder="Password">
+        <input formControlName="password" type="password" placeholder="Пароль">
         <div *ngIf="_password.invalid && (_password.touched || _password.dirty)">
             <span class="error-message" *ngIf="_password.errors?.minlength">Password must be longer than 5</span>
             <span class="error-message" *ngIf="_password.errors?.maxlength">Password must be no longer than 16</span>
             <span class="error-message" *ngIf="_password.errors?.required">Field is required</span>
         </div>
-        <input type="button" value="Login" (click)="authenticate()">
+        <input type="button" value="Войти" (click)="authenticate()">
     </form>
 </div>

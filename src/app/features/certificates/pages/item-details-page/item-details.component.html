@@ -26,6 +26,27 @@
         <div *ngIf="!isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
           <input class="button-approve" (click)="cancel(storeUser.id)" type="button" value="Отменить заявку" >
         </div>
+        <div *ngIf="certificateData.status === inProgress" class = "button-approve-container">
+          <div class="user-card-container">
+            <div class="row"><a href="#" class="avatar-block-user">
+              <img src="../../../../../assets/avatar.png" alt="">
+            </a>
+              <div class="full-name">
+                <a href="#">{{certificateData.developer.firstName}} {{certificateData.developer.lastName}}</a>
+              </div>
+            </div>
+            <div>
+              <div *ngIf="certificateData.developer.skills.length !== 0" class="tags-container">
+                <span *ngFor="let tag of certificateData.developer.skills" class="task-tags">{{tag}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok"  type="button" value="Завершить заказ" >
+              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancelProcessing()" type="button" value="Отклонить выполнение" >
+            </div>
+
+          </div>
+        </div>
       </div>
       <div *ngIf="certificateData?.desiredDevelopers.length !== 0">
         <span class="ready">Готовы взяться</span>

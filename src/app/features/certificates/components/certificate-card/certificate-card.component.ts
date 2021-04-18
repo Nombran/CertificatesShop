@@ -7,6 +7,7 @@ import { JwtTokenService } from 'src/app/core/services/jwt-token.service';
 import { Router } from '@angular/router';
 import { CertificateService } from 'src/app/core/services/certificates.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import {User} from '../../../../models/user';
 
 @Component({
     selector: 'certificate-card',
@@ -15,9 +16,11 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class CertificateCardComponent implements OnInit {
     @Input() certificateData: Certificate;
+    @Input() buttonValue: String;
     opacity: number = 0;
     authState: Observable<any>;
     role: string;
+    storeUser: User;
     userId: number;
 
     constructor(private store: Store<AppState>,
@@ -26,6 +29,9 @@ export class CertificateCardComponent implements OnInit {
         private certificateService: CertificateService,
         private _snackBar: MatSnackBar) {
         this.authState = this.store.select(selectAuthState);
+        this.authState.subscribe((state) => {
+        this.storeUser = state.user;
+      })
     }
 
     ngOnInit(): void {

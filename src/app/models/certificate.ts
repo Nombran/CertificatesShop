@@ -10,7 +10,7 @@ export interface Certificate {
     modificationDate?: Date;
     tags: Array<string>;
     creatorId: number;
-    developerId?: number;
+    developer?: User;
     desiredDevelopers?: Array<User>;
 }
 

@@ -21,6 +21,8 @@ export class ItemDetailsPageComponent{
   @ViewChild(CertificateCardComponent) card: CertificateCardComponent;
   authState: Observable<any>;
   storeUser: User;
+  developer: User;
+  inProgress: string = "IN_PROGRESS";
   isButtonVisible: boolean = true;
 
 
@@ -80,6 +82,12 @@ export class ItemDetailsPageComponent{
       (response: Response) => {
         this.certificateData.desiredDevelopers = this.certificateData.desiredDevelopers.filter(user => user.id !== this.storeUser.id)
         this.isButtonVisible = true;
+      }
+    )
+  }
+  cancelProcessing () {
+    this.certificateService. cancelProcessing(this.certificateData.id).subscribe(
+      (response: Response) => {
       }
     )
   }

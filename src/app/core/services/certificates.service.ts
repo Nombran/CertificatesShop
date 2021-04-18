@@ -129,6 +129,10 @@ export class CertificateService {
       const url = this.apiUrl + 'certificates/' + certificateId + '/desired-devs/' + userId;
       return this.http.delete(url) ;
     }
+    cancelProcessing(certificateId) {
+      const url = this.apiUrl + 'certificates/' + certificateId + '/dev';
+      return this.http.delete(url) ;
+    }
     addDevelop (userId, certificateId) {
       const url = this.apiUrl + `certificates/${certificateId}/dev/${userId}`;
       return this.http.post(url, {}) ;
