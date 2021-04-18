@@ -6,7 +6,7 @@ $registration_header_color: rgb(53, 53, 53);
 
 main {
     @include flex-column;
-    background-color: $main_background_color;
+    background-image: url("../../../../assets/background.svg");
     height: 90vh;
     width: 100%;
 }

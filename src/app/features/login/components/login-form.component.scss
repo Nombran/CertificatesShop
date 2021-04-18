@@ -1,7 +1,7 @@
 @import "../../../../styles.scss";
 
 $header_background_color:white;
-$main_background_color:rgb(240, 238, 238);
+$main_background_color: rgb(240, 238, 238);
 $registration_header_color: rgb(53, 53, 53);
 
 .form-content {
@@ -12,10 +12,11 @@ $registration_header_color: rgb(53, 53, 53);
     height: 80vh;
     .round-logo {
         @include flex-column;
-        width: 55%;
-        height: 50%;
+        width: 75%;
+        height: 70%;
         border-radius: 100%;
-        background-color: rgb(192, 190, 190);
+        background-image: url("../../../../assets/user.svg");
+        background-size: cover;
         z-index: 99;
         color: white;
         font-size: 40px;

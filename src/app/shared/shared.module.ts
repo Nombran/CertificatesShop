@@ -13,10 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { FeaturesModule } from '../features/features.module'
 import { CoreModule } from '../core/core.module'
 import { MatBadgeModule } from '@angular/material/badge';
+import {FooterComponent} from "./components/footer/footer.component";
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         MatBadgeModule,
@@ -32,12 +34,13 @@ import { MatBadgeModule } from '@angular/material/badge';
         MatAutocompleteModule,
         CoreModule
     ],
-    exports: [
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        HeaderComponent,
-        MatAutocompleteModule
-    ]
+  exports: [
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    HeaderComponent,
+    MatAutocompleteModule,
+    FooterComponent
+  ]
 })
 export class SharedModule { }
