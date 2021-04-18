@@ -9,7 +9,6 @@ import {Store} from "@ngrx/store";
 import { AppState, selectAuthState } from 'src/app/store/app.states';
 import {Observable} from "rxjs";
 import {User} from "../../../../models/user";
-import {AuthenticationService} from '../../../../core/services/authentication.service';
 
 @Component({
   selector: 'certificates-page',
@@ -31,7 +30,6 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   user: User;
 
   constructor(
-    private authenticationService: AuthenticationService,
     private certificateService: CertificateService,
     private route: ActivatedRoute,
     private tokenService: JwtTokenService,

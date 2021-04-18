@@ -16,6 +16,7 @@ import {User} from '../../../models/user';
 export class ProfilePageComponent {
   authState: Observable<any>;
   storeUser: User;
+  requests: object
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -26,6 +27,14 @@ export class ProfilePageComponent {
     this.authState = this.store.select(selectAuthState);
     this.authState.subscribe((state) => {
       this.storeUser = state.user;
+      console.log(this.storeUser)
+      this.authenticationService.findRequests(this.storeUser.id).subscribe(
+        (response) => {
+          this.requests = response
+          console.log(this.requests)
+        })
     })
-      }
+
+    }
+
 }

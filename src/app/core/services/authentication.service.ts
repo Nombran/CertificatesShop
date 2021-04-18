@@ -33,4 +33,10 @@ export class AuthenticationService {
       const url = environment.apiUrl + `users/${id}`;
       return this.http.get(url);
   }
+
+    findRequests(userId) {
+      const url = environment.apiUrl + `users/${userId}/services`;
+      return this.http.get(url);
+    }
+
 }

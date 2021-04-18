@@ -55,7 +55,7 @@ import {ProfileFormComponent} from './profile/components/profile-form.component'
         CreateTagFormComponent,
         CreateTagPageComponent,
         ProfilePageComponent,
-        ProfileFormComponent
+        ProfileFormComponent,
     ],
     imports: [
         MatAutocompleteModule,
