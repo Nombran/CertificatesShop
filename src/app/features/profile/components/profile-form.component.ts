@@ -44,6 +44,7 @@ export class ProfileFormComponent implements OnInit {
     })
   }
   fillInDataForEdit() {
+      console.log(this.userForEdit)
     this._firstName.setValue(this.userForEdit.firstName);
     this._lastName.setValue(this.userForEdit.lastName);
     this._login.setValue(this.userForEdit.login);
@@ -65,11 +66,6 @@ export class ProfileFormComponent implements OnInit {
                 Validators.maxLength(15),
                 Validators.pattern("[A-Za-z0-9]+")]
             ],
-            password: ['', [Validators.required,
-              Validators.minLength(5),
-              Validators.maxLength(15),
-              Validators.pattern("[A-Za-z0-9]+")]
-            ],
             firstName: ['',
                 [Validators.required,
                 Validators.minLength(2),
@@ -81,10 +77,6 @@ export class ProfileFormComponent implements OnInit {
                 Validators.minLength(2),
                 Validators.maxLength(25),
                 Validators.pattern("[А-Яа-я]+-{0,1}[А-Яа-я]+")]
-            ],
-            repeatPassword: ['',
-                [Validators.required,
-                    this.matchValues()]
             ],
             contacts: ['',
               [Validators.required,
@@ -114,16 +106,6 @@ export class ProfileFormComponent implements OnInit {
               Validators.maxLength(100),]
             ],
         })
-    }
-
-    matchValues(): (AbstractControl) => ValidationErrors | null {
-        console.log("here");
-        return (control: AbstractControl): ValidationErrors | null => {
-            return this.registerForm
-            && this._password.value == this._repeatPassword.value
-                ? null
-                : { matching: true };
-        };
     }
     loadTags(tagParams?: TagParams) {
       if (!tagParams) {
@@ -159,9 +141,7 @@ export class ProfileFormComponent implements OnInit {
         return this.registerForm.get('lastName');
     }
 
-    get _repeatPassword() {
-        return this.registerForm.get('repeatPassword');
-    }
+
     get _contacts() {
       return this.registerForm.get('contacts');
     }

@@ -1,3 +1,33 @@
 <main>
   <profile-form *ngIf="storeUser" [userForEdit]="storeUser"></profile-form>
+  <aside class="second-column">
+    <div class = "profile-block">
+      <a href="#" class="avatar-block">
+        <img src="../../../../../assets/avatar.png" alt="">
+      </a>
+      <div class="full-name">
+        <a href="#">{{storeUser?.firstName}} {{storeUser?.lastName}}</a>
+      </div>
+      <div class="role-container">
+        <div class="role">
+          Заказчик/Фрилансер
+        </div>
+      </div>
+    </div>
+    <div class="profile-statistic">
+      <div class="title">Статистика заказчика</div>
+      <div class="row">
+        <div>Заказы</div>
+        <div>1</div>
+      </div>
+      <div class="row">
+        <div>Завершённых заказов</div>
+        <div>0</div>
+      </div>
+      <div class="divide-row">
+        <div>Зарегистрирован</div>
+        <div>1</div>
+      </div>
+    </div>
+  </aside>
 </main>

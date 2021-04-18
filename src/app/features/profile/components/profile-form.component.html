@@ -1,40 +1,19 @@
 <div class="form-container">
     <div class="container-header">
-        <span>Регистрация</span>
+        <span>Профиль</span>
     </div>
     <form [formGroup]="registerForm">
-        <div class="text-input-container">
-            <div class="input-column">
-                <mat-form-field appearance="fill">
-                    <mat-label>Login</mat-label>
-                    <input autocomplete="off" matInput formControlName="login">
-                    <mat-error *ngIf="_login.invalid && (_login.errors.minlength || _login.errors.maxlength)">Login
-                        length must be from 5 to
-                        15 symbols</mat-error>
-                    <mat-error *ngIf="_login.invalid && _login.errors.required">Login is required filed
-                    </mat-error>
-                    <mat-error *ngIf="_login.invalid && _login.errors.pattern">Forbidden characters
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input class="input" type="password" autocomplete="off" matInput formControlName="password">
-                    <mat-error *ngIf="_password.invalid && (_password.errors.minlength || _password.errors.maxlength)">
-                        Password length must be from 5 to
-                        15 symbols</mat-error>
-                    <mat-error *ngIf="_password.invalid && _password.errors.required">Password is required filed
-                    </mat-error>
-                    <mat-error *ngIf="_password.invalid && _password.errors.pattern">Forbidden characters
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Repeat password</mat-label>
-                    <input type="password" autocomplete="off" matInput formControlName="repeatPassword">
-                    <mat-error *ngIf="_repeatPassword.invalid && _repeatPassword.errors.required">Required filed
-                    </mat-error>
-                    <mat-error *ngIf="_repeatPassword.invalid && _repeatPassword.errors.matching">Please, repeat password correctly
-                    </mat-error>
-                </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Login</mat-label>
+                <input autocomplete="off" matInput formControlName="login">
+                <mat-error *ngIf="_login.invalid && (_login.errors.minlength || _login.errors.maxlength)">Login
+                  length must be from 5 to
+                  15 symbols</mat-error>
+                <mat-error *ngIf="_login.invalid && _login.errors.required">Login is required filed
+                </mat-error>
+                <mat-error *ngIf="_login.invalid && _login.errors.pattern">Forbidden characters
+                </mat-error>
+              </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Имя</mat-label>
                 <input autocomplete="off" matInput formControlName="firstName">
@@ -51,9 +30,6 @@
                 <mat-error *ngIf="_lastName.invalid && _lastName.errors.pattern">Forbidden characters
                 </mat-error>
               </mat-form-field>
-            </div>
-            <div class="input-column second">
-
                 <mat-form-field appearance="fill">
                   <mat-label>Контактная информация</mat-label>
                   <input autocomplete="off" matInput formControlName="contacts">
@@ -95,10 +71,9 @@
                 <mat-error *ngIf="_sphere.invalid && (_sphere.errors.minlength || _sphere.errors.maxlength)">sphere length must be from 2 to 25 symbols
                 </mat-error>
               </mat-form-field>
-            </div>
-        </div>
         <div class="button-container">
-            <input (click)="onSubmit()" [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" type="button" class="signup-button" value="Создать аккаунт">
+            <input (click)="onSubmit()" [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" type="button" class="signup-button" value="Сохранить">
         </div>
     </form>
+
 </div>
