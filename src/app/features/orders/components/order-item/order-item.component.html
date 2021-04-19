@@ -1,0 +1,10 @@
+<div class="order-container">
+    <div class="item">
+        <span class="date">
+            <i class="material-icons md-24 md-dark">schedule</i>{{order.purchaseDate}}
+        </span>
+        <span class="certifictes-block">Certificates: {{order.certificatesIds.length}}</span>
+        <span class="price-container">Total price: <span class="price">{{order.totalPrice}}$</span></span>
+    </div>
+    <input type="button" value="Details" (click)="navigateToDetails()">
+</div>

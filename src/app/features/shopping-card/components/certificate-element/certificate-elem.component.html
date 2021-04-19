@@ -1,0 +1,9 @@
+<div class="elem-container">
+    <img src="../../../../../assets/draw.jpg" alt="">
+    <div class="info-container">
+        <h1>{{certificate.name}}</h1>
+        <span>{{certificate.description}}</span>
+    </div>
+    <i *ngIf="ifEditable" (click)="add()" class="add material-icons md-24 md-dark">add</i>
+    <i *ngIf="ifEditable" (click)="remove()" class="remove material-icons md-24 md-dark">remove</i>
+</div>

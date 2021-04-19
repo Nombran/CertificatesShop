@@ -1,0 +1,113 @@
+@import "../../../../../styles.scss";
+
+form {
+    @include flex-column;
+    width: 50vw;
+    height: auto;
+  padding: 20px;
+    $header-height: 8vh;
+
+    .container-header {
+        @include flex-row;
+        justify-content: flex-start;
+        width: 50vw;
+        height: $header-height;
+      background-color: #292929;
+
+
+        font-size: 17px;
+        font-weight: bold;
+        color: #4f6173;
+         box-shadow: 0px 3px 5px 0 rgb(174 174 174 / 50%);
+
+        .inactive {
+            margin-left: 30vw;
+            color: red;
+        }
+        .active {
+            margin-left: 30vw;
+            color: orange;
+        }
+    }
+    .input-container {
+        @include flex-column;
+        padding-top: 30px;
+        background-color: #fff;
+        box-shadow: 0px 3px 5px 0 rgb(174 174 174 / 50%);
+        justify-content: flex-start;
+        width: 50vw;
+        min-height: 52vh;
+        .first-row {
+            @include flex-row;
+            padding-top: 5vh;
+            align-items: flex-start;
+            width: 70vw;
+            min-height: 35vh;
+            .input-col {
+                @include flex-column;
+                width: 50%;
+                height: 100%;
+            }
+        }
+        textarea {
+          height: 100px;
+        }
+    }
+  .headers {
+    padding: 20px;
+    color: white;
+  }
+    mat-form-field  {
+        width: 70%;
+    }
+
+    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-flex {
+      background-color: #f1f2f3;
+      border-radius: 2%;
+    }
+    .mat-input-element {
+        color: rgb(53, 53, 53);
+    }
+    ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+        background-color: green !important;
+    }
+    ::ng-deep .mat-form-field-invalid .ng-invalid {
+        color: red !important;
+    }
+    ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+        color: green !important;
+    }
+    .disabled {
+        position : relative;
+        color    : grey;
+    }
+    .disabled:after {
+        position :absolute;
+        left     : 0;
+        top      : 0;
+        width    : 100%;
+        height   : 100%;
+        content  :' ';
+    }
+    input[type="button"] {
+        margin-top: 5%;
+        cursor: pointer;
+        margin-bottom: 5vh;
+        width: 70%;
+        height: 6vh;
+        font-weight: bold;
+        background-color: rgb(48, 204, 126);
+        color: white;
+        &:hover {
+            background-color: white;
+            border: 1px solid rgb(48, 204, 126);
+            color: rgb(48, 204, 126);
+        }
+        &:disabled {
+            cursor: auto;
+            background-color: #292929;
+            border: 1px solid white;
+            color: white;
+        }
+    }
+}
