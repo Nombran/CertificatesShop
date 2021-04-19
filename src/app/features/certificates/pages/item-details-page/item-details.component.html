@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="row">
-              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok"  type="button" value="Завершить заказ" >
+              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok" (click)="createReview()"  type="button" value="Завершить заказ" >
               <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancelProcessing()" type="button" value="Отклонить выполнение" >
             </div>
           </div>

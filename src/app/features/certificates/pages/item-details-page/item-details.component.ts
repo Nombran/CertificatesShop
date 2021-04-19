@@ -8,6 +8,9 @@ import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState, selectAuthState} from "../../../../store/app.states";
 import {User} from "../../../../models/user";
+import {MatDialog} from "@angular/material/dialog";
+import {ReviewData} from "../../../../models/review-data";
+import {ReviewDialog} from "../../../../shared/components/dialog/dialog.component";
 
 
 @Component({
@@ -25,6 +28,7 @@ export class ItemDetailsPageComponent{
   inProgress: string = "IN_PROGRESS";
   isButtonVisible: boolean = true;
   requests: object
+  reviewData: ReviewData = {}
 
 
   constructor(
@@ -32,7 +36,8 @@ export class ItemDetailsPageComponent{
     private route: ActivatedRoute,
     private certificateService: CertificateService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public dialog: MatDialog
   ) {
     this.authState = this.store.select(selectAuthState);
     this.authState.subscribe((state) => {
@@ -113,5 +118,24 @@ export class ItemDetailsPageComponent{
     )
     const url = '/orders/' + this.certificateData.id + '/details';
     this.router.navigateByUrl(url);
+  }
+
+
+  createReview() {
+    const dialogRef = this.dialog.open(ReviewDialog, {
+      width: '30vw',
+      height: '40vh',
+      data: this.reviewData
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.reviewData = result
+        this.reviewData.creatorId = this.certificateData.creatorId
+        this.reviewData.developerId = this.certificateData.developer.id
+        this.certificateService.closeRequest(this.certificateData.id, this.reviewData)
+      }
+    });
   }
 }

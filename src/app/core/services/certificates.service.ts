@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Certificate } from 'src/app/models/certificate';
 import { Cookies } from '@cedx/ngx-cookies';
 import { CookieOptions } from '@cedx/ngx-cookies';
+import {ReviewData} from "../../models/review-data";
 
 export enum CertificateOrderBy {
     ID = "id",
@@ -136,5 +137,10 @@ export class CertificateService {
     addDevelop (userId, certificateId) {
       const url = this.apiUrl + `certificates/${certificateId}/dev/${userId}`;
       return this.http.post(url, {}) ;
+    }
+
+    closeRequest(requestId: number ,review: ReviewData) {
+      const url = this.apiUrl + `certificates/${requestId}/close`;
+      return this.http.post(url, review)
     }
 }

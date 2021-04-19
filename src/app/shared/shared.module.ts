@@ -8,32 +8,37 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { AppRoutingModule } from '../app-routing.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { FeaturesModule } from '../features/features.module'
 import { CoreModule } from '../core/core.module'
 import { MatBadgeModule } from '@angular/material/badge';
 import {FooterComponent} from "./components/footer/footer.component";
+import {ReviewDialog} from "./components/dialog/dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        ReviewDialog
     ],
-    imports: [
-        MatBadgeModule,
-        FeaturesModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        CommonModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        AppRoutingModule,
-        MatAutocompleteModule,
-        CoreModule
-    ],
+  imports: [
+    MatBadgeModule,
+    FeaturesModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    AppRoutingModule,
+    MatAutocompleteModule,
+    CoreModule,
+    MatDialogModule,
+    FormsModule
+  ],
   exports: [
     MatSidenavModule,
     MatButtonModule,
