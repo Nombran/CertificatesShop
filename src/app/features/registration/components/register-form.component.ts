@@ -8,6 +8,7 @@ import {TagParams, TagService} from '../../../core/services/tag.service';
 import { debounce } from 'lodash'
 import {User} from '../../../models/user';
 
+
 @Component({
     selector: 'register-form',
     templateUrl: './register-form.component.html',
@@ -74,13 +75,13 @@ export class RegisterFormComponent implements OnInit {
                 [Validators.required,
                 Validators.minLength(2),
                 Validators.maxLength(25),
-                Validators.pattern("[А-Яа-я]+-{0,1}[А-Яа-я]+")]
+                ]
             ],
             lastName: ['',
                 [Validators.required,
                 Validators.minLength(2),
                 Validators.maxLength(25),
-                Validators.pattern("[А-Яа-я]+-{0,1}[А-Яа-я]+")]
+                ]
             ],
             repeatPassword: ['',
                 [Validators.required,
@@ -90,7 +91,7 @@ export class RegisterFormComponent implements OnInit {
               [Validators.required,
                 Validators.minLength(1),
                 Validators.maxLength(100),
-                Validators.pattern("[А-Яа-я]+-{0,1}[А-Яа-я]+")]
+               ]
             ],
            tagsControl: [''],
             specialized: ['',

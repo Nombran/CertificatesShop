@@ -4,7 +4,7 @@
         <div class="request-container">
           <div class="row">
             <h2 class = "request-name">{{certificateData.name}}</h2>
-            <span>{{certificateData.status}}</span>
+            <span>{{status}}</span>
           </div>
 
           <div class = "price-container">
@@ -26,14 +26,20 @@
         <div *ngIf="!isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
           <input class="button-approve" (click)="cancel(storeUser.id)" type="button" value="Отменить заявку" >
         </div>
-        <div *ngIf="certificateData.status === inProgress" class = "button-approve-container">
-          <div class="user-card-container">
-            <div class="row"><a href="#" class="avatar-block-user">
+        <div *ngIf="certificateData.status === inProgress" >
+          <div class="user-card-approve-container">
+            <div class="title">Выполняет</div>
+            <div class="row-simple"><a href="#" class="avatar-block-user">
               <img src="../../../../../assets/avatar.png" alt="">
             </a>
               <div class="full-name">
                 <a href="#">{{certificateData.developer.firstName}} {{certificateData.developer.lastName}}</a>
               </div>
+            </div>
+            <div class="row-simple">
+              <span class="dec-text" >Контактная информация:{{' '}}</span>
+              <span class="request-date">{{ certificateData.developer.contacts}}</span>
+
             </div>
             <div>
               <div *ngIf="certificateData.developer.skills.length !== 0" class="tags-container">
@@ -44,11 +50,10 @@
               <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok"  type="button" value="Завершить заказ" >
               <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancelProcessing()" type="button" value="Отклонить выполнение" >
             </div>
-
           </div>
         </div>
       </div>
-      <div *ngIf="certificateData?.desiredDevelopers.length !== 0">
+      <div *ngIf="certificateData?.desiredDevelopers.length !== 0" class = "readyGo">
         <span class="ready">Готовы взяться</span>
         <div class="users-container">
           <div *ngFor="let user of certificateData?.desiredDevelopers" class="user-card">
@@ -95,15 +100,15 @@
         <div class="title">Статистика заказчика</div>
         <div class="row">
           <div>Всего заказов</div>
-          <div>1</div>
+          <div></div>
         </div>
         <div class="row">
           <div>Завершённых заказов</div>
-          <div>0</div>
+          <div></div>
         </div>
         <div class="divide-row">
           <div>Зарегистрирован</div>
-          <div>1</div>
+          <div>{{user?.registrationDate.substr(0, 10)}}</div>
         </div>
       </div>
       <div class="profile-statistic">

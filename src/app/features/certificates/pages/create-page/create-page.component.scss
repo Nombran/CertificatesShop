@@ -5,6 +5,7 @@ $main_background_color:rgb(240, 238, 238);
 main {
     @include flex-column;
     background-color: $main_background_color;
-    height: 90vh;
+    height: auto;
+    padding: 40px;
     width: 100%;
 }

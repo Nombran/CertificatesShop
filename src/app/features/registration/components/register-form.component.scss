@@ -7,41 +7,51 @@ $registration_header_color: rgb(53, 53, 53);
 .form-container {
     @include flex-column;
     justify-content: flex-start;
-    width: 80vw;
-    height: 85vh;
+    width: 50vw;
+    height: auto;
     background-color: white;
-    $header-height: 18%;
+    $header-height: 40%;
     .container-header {
         @include flex-column;
         align-items: flex-start;
         padding-left: 5%;
         width: 95%;
-        height: $header-height;
+        height: 100px;
         background-color: $registration_header_color;
         color: white;
         font-weight: bold;
     }
     form {
         height: 98% - $header-height;
-        padding-top: 2%;
         width: 100%;
+        padding: 14px;
         $input_width:26vw;
+
         .text-input-container {
-            @include flex-row;
+            @include flex-column;
             width: 100%;
             height: 70%;
         }
         .input {
             border: #30cc7e;
         }
-        mat-form-field {
+      mat-chip-list mat-label {
+        margin-left: 14px;
+      }
+      mat-form-field {
             width: 25vw;
+        }
+        textarea {
+          height: 100px;
         }
         .input-column {
             @include flex-column;
             width: 50%;
             justify-content: start;
             height: 100%;
+        }
+        input {
+
         }
 
         ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
@@ -50,7 +60,8 @@ $registration_header_color: rgb(53, 53, 53);
         .mat-input-element {
             color: rgb(53, 53, 53);
         }
-        ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+        ::ng-deep .mat-focused .mat-form-field-ripple {
+
             background-color: green !important;
         }
         ::ng-deep .mat-form-field-invalid .ng-invalid {

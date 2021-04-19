@@ -1,10 +1,12 @@
 <div *ngIf="buttonValue === certificateData.status" class="certificate" [style.opacity]="opacity" (click)="certificateClick()">
     <span
      *ngIf="role == 'ROLE_ADMIN'"
-      class="status">{{certificateData.status}}
+      class="status">{{status}}
     </span>
     <div class="certificate-image">
-        <img src="../../../../../assets/develop.jpg" alt="">
+        <img *ngIf="certificateData.tags[0] === 'HTML' " src="../../../../../assets/html.png" alt="">
+        <img *ngIf="certificateData.tags[0] === 'CSS' " src="../../../../../assets/css.png" alt="">
+        <img *ngIf="certificateData.tags[0] !== 'HTML' && certificateData.tags[0] !== 'CSS' " src="../../../../../assets/build.png" alt="">
     </div>
     <div class="certificate-info">
         <div class="first-row">

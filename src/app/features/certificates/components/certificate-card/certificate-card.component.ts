@@ -22,6 +22,7 @@ export class CertificateCardComponent implements OnInit {
     role: string;
     storeUser: User;
     userId: number;
+    status: string;
 
     constructor(private store: Store<AppState>,
         private tokenService: JwtTokenService,
@@ -36,6 +37,9 @@ export class CertificateCardComponent implements OnInit {
 
     ngOnInit(): void {
         const token: string = this.tokenService.getToken();
+        if (this.certificateData.status === 'PENDING') this.status = 'Свободный заказ'
+          else if (this.certificateData.status === 'IN_PROGRESS') this.status = 'Выполняется'
+              else this.status = 'Завершён'
         if (token) {
             const decodedToken = this.tokenService.decodeToken(token);
             this.role = decodedToken.roles.toString();

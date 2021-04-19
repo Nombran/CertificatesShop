@@ -10,4 +10,5 @@ export class User {
     about?: string;
     activity?: string;
     contacts?: string;
+    registrationDate?: string
   }

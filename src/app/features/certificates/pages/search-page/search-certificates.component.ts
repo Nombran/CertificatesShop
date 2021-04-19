@@ -14,10 +14,12 @@ import {User} from "../../../../models/user";
   selector: 'certificates-page',
   templateUrl: './search-certificates.component.html',
   styleUrls: ['./search-certificates.component.scss'],
+
 })
 export class SearchCertificatesPage implements OnInit, AfterViewInit {
   @ViewChildren(CertificateCardComponent) cards: QueryList<CertificateCardComponent>;
   @ViewChild('scrollframe') scrollFrame: ElementRef;
+
   certificates: Certificate[];
   private scrollContainer: any;
   isLoading: boolean = false;

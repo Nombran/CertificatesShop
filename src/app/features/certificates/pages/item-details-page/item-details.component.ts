@@ -21,9 +21,10 @@ export class ItemDetailsPageComponent{
   @ViewChild(CertificateCardComponent) card: CertificateCardComponent;
   authState: Observable<any>;
   storeUser: User;
-  developer: User;
+  status: string;
   inProgress: string = "IN_PROGRESS";
   isButtonVisible: boolean = true;
+  requests: object
 
 
   constructor(
@@ -43,8 +44,10 @@ export class ItemDetailsPageComponent{
         this.certificateService.findById(certificateId).subscribe(
           (response: Certificate) => {
             this.certificateData = response
+            if (this.certificateData.status === 'PENDING') this.status = 'Свободный заказ'
+            else if (this.certificateData.status === 'IN_PROGRESS') this.status = 'Выполняется'
+            else this.status = 'Завершён'
             if (this.certificateData.desiredDevelopers.find(user=>user.id === this.storeUser.id)) {
-              console.log('if')
               this.isButtonVisible = false;
             }
             console.log(this.certificateData)
@@ -52,6 +55,11 @@ export class ItemDetailsPageComponent{
               (response: User) => {
                 this.user = response
                 console.log(this.user)
+                this.authenticationService.findRequests(this.user.id).subscribe(
+                  (response) => {
+                    this.requests = response
+                    console.log(this.requests)
+                  })
               },
               (error) => {
                 this.router.navigateByUrl('/certificates')
@@ -76,6 +84,8 @@ export class ItemDetailsPageComponent{
         this.isButtonVisible = false;
       }
     )
+    const url = '/orders/' + this.certificateData.id + '/details';
+    this.router.navigateByUrl(url);
   }
   cancel (userId) {
     this.certificateService.deleteDesiredDev(userId, this.certificateData.id).subscribe(
@@ -84,12 +94,16 @@ export class ItemDetailsPageComponent{
         this.isButtonVisible = true;
       }
     )
+    const url = '/orders/' + this.certificateData.id + '/details';
+    this.router.navigateByUrl(url);
   }
   cancelProcessing () {
     this.certificateService. cancelProcessing(this.certificateData.id).subscribe(
       (response: Response) => {
       }
     )
+    const url = '/orders/' + this.certificateData.id + '/details';
+    this.router.navigateByUrl(url);
   }
   approveUser (id) {
     this.certificateService.addDevelop(id, this.certificateData.id).subscribe(
@@ -97,5 +111,7 @@ export class ItemDetailsPageComponent{
 
       }
     )
+    const url = '/orders/' + this.certificateData.id + '/details';
+    this.router.navigateByUrl(url);
   }
 }
