@@ -72,13 +72,14 @@ $registration_header_color: rgb(53, 53, 53);
         }
         .button-container {
             @include flex-row;
-            justify-content: flex-end;
+            padding-left: 14px;
             height: 30%;
             input[type="button"] {
                 cursor: pointer;
-                width: ($input_width - 2vw);
+                width: 30%;
                 height: 6vh;
                 margin-right: 1vw;
+                margin-left: 20px;
                 font-weight: bold;
                 &.signup-button {
                     margin-right: 3vw;

@@ -16,12 +16,6 @@ export class UserGuard implements CanActivate {
         if(token) {
             const decodeToken: TokenPayLoad = this.tokenService.decodeToken(token);
             const role: string = decodeToken.roles.toString();
-            if(role == 'ROLE_USER') {
-                return true;
-            } else {
-                this.router.navigateByUrl('/certificates');
-                return false;
-            }
         } else {
             this.router.navigateByUrl('/certificates');
             return false;

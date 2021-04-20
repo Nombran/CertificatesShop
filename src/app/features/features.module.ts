@@ -31,6 +31,7 @@ import { PastOrdersPageComponent } from './orders/pages/past-orders/past-orders.
 import { OrderDetailsPageComponent } from './orders/pages/order-details/order-details.component'
 import {ProfilePageComponent} from './profile/pages/profile.component';
 import {ProfileFormComponent} from './profile/components/profile-form.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import {ProfileFormComponent} from './profile/components/profile-form.component'
         MatSnackBarModule,
         BrowserModule,
         BrowserAnimationsModule,
+        MatButtonToggleModule,
     ],
     exports: [LoginPageComponent, ReactiveFormsModule, RegistrationPageComponent]
 })

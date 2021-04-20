@@ -27,7 +27,8 @@ export class ItemDetailsPageComponent{
   status: string;
   inProgress: string = "IN_PROGRESS";
   isButtonVisible: boolean = true;
-  requests: object
+  requests: any
+  finishedRequests: Array<Certificate>
   reviewData: ReviewData = {}
 
 
@@ -49,7 +50,7 @@ export class ItemDetailsPageComponent{
         this.certificateService.findById(certificateId).subscribe(
           (response: Certificate) => {
             this.certificateData = response
-            if (this.certificateData.status === 'PENDING') this.status = 'Свободный заказ'
+            if (this.certificateData.status === 'PENDING') this.status = 'Ожидание'
             else if (this.certificateData.status === 'IN_PROGRESS') this.status = 'Выполняется'
             else this.status = 'Завершён'
             if (this.certificateData.desiredDevelopers.find(user=>user.id === this.storeUser.id)) {
@@ -63,6 +64,7 @@ export class ItemDetailsPageComponent{
                 this.authenticationService.findRequests(this.user.id).subscribe(
                   (response) => {
                     this.requests = response
+                    this.finishedRequests = this.requests?.createdServices.filter(el=>el.status==='COMPLETED')
                     console.log(this.requests)
                   })
               },
@@ -134,7 +136,11 @@ export class ItemDetailsPageComponent{
         this.reviewData = result
         this.reviewData.creatorId = this.certificateData.creatorId
         this.reviewData.developerId = this.certificateData.developer.id
-        this.certificateService.closeRequest(this.certificateData.id, this.reviewData)
+        this.certificateService.closeRequest(this.certificateData.id, this.reviewData).subscribe(
+          (Response) => {
+
+          }
+        )
       }
     });
   }

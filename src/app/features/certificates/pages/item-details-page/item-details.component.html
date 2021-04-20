@@ -4,7 +4,9 @@
         <div class="request-container">
           <div class="row">
             <h2 class = "request-name">{{certificateData.name}}</h2>
-            <span>{{status}}</span>
+            <span *ngIf="status==='Ожидание' " class="status pending">{{status}}</span>
+            <span *ngIf="status==='Выполняется' "class="status inProgress">{{status}}</span>
+            <span *ngIf="status==='Завершён' "class="status complete">{{status}}</span>
           </div>
 
           <div class = "price-container">
@@ -58,7 +60,7 @@
         <div class="users-container">
           <div *ngFor="let user of certificateData?.desiredDevelopers" class="user-card">
             <div class="user-card-container">
-              <div class="row"><a href="#" class="avatar-block-user">
+              <div class="row-simple"><a href="#" class="avatar-block-user">
                 <img src="../../../../../assets/avatar.png" alt="">
               </a>
                 <div class="full-name">
@@ -68,6 +70,10 @@
               <div>
                 <div *ngIf="user.skills.length !== 0" class="tags-container">
                   <span *ngFor="let tag of user.skills" class="task-tags">{{tag}}</span>
+                </div>
+                <div class="row-simple">
+                  <div style="margin-top: 5px" class="title">Контакты заказчика:</div>
+                  <div  style="margin-left: 3px" class="request-date">{{user?.contacts}}</div>
                 </div>
               </div>
               <div class="row">
@@ -100,11 +106,11 @@
         <div class="title">Статистика заказчика</div>
         <div class="row">
           <div>Всего заказов</div>
-          <div></div>
+          <div>{{requests?.createdServices.length}}</div>
         </div>
         <div class="row">
           <div>Завершённых заказов</div>
-          <div></div>
+          <div>{{finishedRequests?.length}}</div>
         </div>
         <div class="divide-row">
           <div>Зарегистрирован</div>

@@ -26,7 +26,7 @@ export class SearchCertificatesPage implements OnInit, AfterViewInit {
   buttonValue: String = "PENDING"
   buttonPending: String = "PENDING"
   buttonProgress: String = "IN_PROGRESS"
-  buttonComplete: String = "COMPLETE"
+  buttonComplete: String = "COMPLETED"
   private nextPageLink: string;
   authState: Observable<any>;
   user: User;

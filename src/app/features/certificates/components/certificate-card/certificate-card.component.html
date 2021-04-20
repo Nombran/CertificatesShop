@@ -6,7 +6,9 @@
     <div class="certificate-image">
         <img *ngIf="certificateData.tags[0] === 'HTML' " src="../../../../../assets/html.png" alt="">
         <img *ngIf="certificateData.tags[0] === 'CSS' " src="../../../../../assets/css.png" alt="">
-        <img *ngIf="certificateData.tags[0] !== 'HTML' && certificateData.tags[0] !== 'CSS' " src="../../../../../assets/build.png" alt="">
+        <img *ngIf="certificateData.tags[0] === 'Java'" src="../../../../../assets/Java.png" alt="">
+        <img *ngIf="certificateData.tags[0] === 'C++' " src="../../../../../assets/C++.png" alt="">
+        <img *ngIf ="certificateData.tags[0] !== 'C++' && certificateData.tags[0] !== 'Java' && certificateData.tags[0] !== 'CSS' && certificateData.tags[0] !== 'HTML'" src="../../../../../assets/build.png" alt="">
     </div>
     <div class="certificate-info">
         <div class="first-row">

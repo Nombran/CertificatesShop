@@ -5,7 +5,7 @@ $main_background_color: rgb(240, 238, 238);
 main {
     @include flex-row;
     align-items: flex-start;
-    background-color: $main_background_color;
+    background-image: url("../../../../../assets/bulb.svg");
     padding: 5%;
     height: auto;
     width: 100%;
@@ -38,6 +38,24 @@ main {
     border-top: 1px solid #d9dfe0;
     margin-top: auto;
     text-align: center;
+  }
+  .status {
+    border-radius: 5px;
+    padding: 5px;
+    height: 20px;
+    font-weight: bold;
+  }
+  .pending {
+    border: solid 2px gray;
+    color: gray;
+  }
+  .inProgress {
+    border: solid 2px yellow;
+    color: yellow;
+  }
+  .complete {
+    border: solid 2px #5fbfb4;
+    color: #5fbfb4;
   }
  .button-approve {
     margin-top: 14px;

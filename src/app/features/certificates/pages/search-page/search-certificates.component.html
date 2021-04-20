@@ -6,11 +6,12 @@
       </span>
       <div><img src="../../../../../assets/itpng.png" height="320"/></div>
     </div>
-    <tag-panel></tag-panel>
-  <div>
-    <input (click)="changeRequestDisplay(buttonPending)" type="button" value="Все заказы" >
-    <input (click)="changeRequestDisplay(buttonProgress)" type="button" value="Мои активные заказы" >
-    <input (click)="changeRequestDisplay(buttonComplete)" type="button" value="Мои завершённые заказы" >
+  <div class="toggle-container">
+      <mat-button-toggle-group  class="toggle-container" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle class="toggle" (click)="changeRequestDisplay(buttonPending)" value="bold">Все заказы</mat-button-toggle>
+        <mat-button-toggle class="toggle" (click)="changeRequestDisplay(buttonProgress)" value="italic">Мои активные заказы</mat-button-toggle>
+        <mat-button-toggle class="toggle" (click)="changeRequestDisplay(buttonComplete)" value="underline">Мои завершённые заказы</mat-button-toggle>
+      </mat-button-toggle-group>
   </div>
     <div class="certificates-container">
         <certificate-card *ngFor="let certificate of certificates" [certificateData]="certificate" [buttonValue]="buttonValue"></certificate-card>
