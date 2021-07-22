@@ -1,0 +1,42 @@
+<header>
+  <div class="logo-container">
+    <button mat-button class="menu-button" (click)="sidenav.toggle()">
+      <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+    </button>
+    <span id="logo">Free<span id="logo-part2">Lance</span></span>
+  </div>
+  <form [formGroup]="tagForm" class="search-container"
+    [style.visibility]="!ifCertificatesRoute() ? 'hidden' : 'inherit'">
+    <input class="certificate-search" type="text" ngDefaultControl [formControl]="certificateControl"  placeholder="Поиск по названию">
+      <input class="tag-input" type="text" placeholder="Выбрать категорию" aria-label="Number" [formControl]="tagControl"
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" ngDefaultControl [formControl]="tagSelectControl">
+        <mat-option *ngFor="let option of loadedTags" [value]="option.name" (click)="tagChoosed(option)" >
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+  </form>
+  <div class="right-buttons-container">
+    <i *ngIf="userRole == 'ROLE_USER' && isUserAuthenticated" class="material-icons md-24 md-dark" [matBadge]="shoppingCardLength" [matBadgeHidden]="shoppingCardLength == 0" routerLink="/certificates/card" matBadgeColor="warn">shopping_cart</i>
+    <a *ngIf="!isUserAuthenticated" href="/login" id="signin">Войти</a>
+    <a *ngIf="isUserAuthenticated" (click)="profile()" id="profile">Профиль</a>
+    <a *ngIf="isUserAuthenticated" (click)="logOut()" id="logout">Выйти</a>
+
+    <span *ngIf="!isUserAuthenticated">|</span>
+    <a *ngIf="!isUserAuthenticated" href="/registration">Зарегистрироваться</a>
+  </div>
+</header>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav"
+    (click)="onSidenavClick()">
+    <a mat-button routerLink="/certificates">Домой</a>
+    <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/tags/create">Добавить категорию</a>
+    <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/certificates/create">Добавить новую услугу</a>
+    <a *ngIf="userRole == 'ROLE_ADMIN'" mat-button routerLink="/certificates/created">Мои заказы</a>
+    <a *ngIf="userRole == 'ROLE_USER'" mat-button routerLink="/orders">История заказов</a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,46 @@
+<form [formGroup]="certificateForm">
+    <div class="container-header">
+      <div class="headers">
+        <span *ngIf="!certificateForEdit">Разместить заказ</span>
+        <span *ngIf="certificateForEdit">Изменить услугу</span>
+      </div>
+    </div>
+    <div class="input-container">
+                <mat-form-field appearance="outline">
+                    <mat-label>Название</mat-label>
+                    <input autocomplete="off" matInput formControlName="certificateName">
+                    <mat-error *ngIf="_certificateName.invalid">Длина названия услуги должна быть от 5 до 50 символов</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Описание</mat-label>
+                    <textarea autocomplete="off" matInput formControlName="certificateDescription"></textarea>
+                    <mat-error *ngIf="_certificateDescription.invalid">Описание не должно превышать 3000 символов</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="tag-list" [class.disabled]= "certificateForEditStatus == 'INACTIVE' || certificateForEditStatus == 'ACTIVE'">
+                   <mat-label>Выберите категории</mat-label>
+                    <mat-chip-list #chipList aria-label="Tag selection">
+                        <mat-chip *ngFor="let tag of tags" selectable="true" removable="true" (removed)="remove(tag)">
+                            {{tag.name}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input  #tagInput formControlName="tagsControl"
+                            [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let tag of loadedTags" [value]="tag.name" (click)="selected(tag)">
+                            {{tag.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Стоимость</mat-label>
+                    <input autocomplete="off" type="number" matInput formControlName="price">
+                    <mat-error *ngIf="_price.invalid">Стоимость должна быть от 1 до 2000</mat-error>
+                </mat-form-field>
+                <input *ngIf="!certificateForEdit" (click)="onSubmit()" type="button" value="Создать" [disabled]="certificateForm.invalid">
+                <input *ngIf="certificateForEdit" (click)="onEdit()" type="button" value="Сохранить" [disabled]="certificateForm.invalid || certificateForEditStatus == 'INACTIVE'">
+        </div>
+</form>

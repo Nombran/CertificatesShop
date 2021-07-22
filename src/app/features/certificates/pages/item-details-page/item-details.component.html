@@ -1,0 +1,125 @@
+<main>
+    <div class="column">
+      <div *ngIf="certificateData && user" class="main-info-container">
+        <div class="request-container">
+          <div class="row">
+            <h2 class = "request-name">{{certificateData.name}}</h2>
+            <span *ngIf="status==='Ожидание' " class="status pending">{{status}}</span>
+            <span *ngIf="status==='Выполняется' "class="status inProgress">{{status}}</span>
+            <span *ngIf="status==='Завершён' "class="status complete">{{status}}</span>
+          </div>
+
+          <div class = "price-container">
+            <span class="price">{{certificateData.price}}$ за проект</span>
+          </div>
+          <div>
+            <span class = "request-date">{{certificateData.creationDate}}</span>
+          </div>
+          <div class="tags-container">
+            <span class="task-tags">{{certificateData.tags}}</span>
+          </div>
+          <div class = "description-container">
+            <span class="description">{{certificateData.description}}</span>
+          </div>
+        </div>
+        <div *ngIf="isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
+          <input class="button-approve" (click)="approve()" type="button" value="Откликнуться" >
+        </div>
+        <div *ngIf="!isButtonVisible && storeUser.id !== certificateData.creatorId" class = "button-approve-container">
+          <input class="button-approve" (click)="cancel(storeUser.id)" type="button" value="Отменить заявку" >
+        </div>
+        <div *ngIf="certificateData.status === inProgress" >
+          <div class="user-card-approve-container">
+            <div class="title">Выполняет</div>
+            <div class="row-simple"><a href="#" class="avatar-block-user">
+              <img src="../../../../../assets/avatar.png" alt="">
+            </a>
+              <div class="full-name">
+                <a href="#">{{certificateData.developer.firstName}} {{certificateData.developer.lastName}}</a>
+              </div>
+            </div>
+            <div class="row-simple">
+              <span class="dec-text" >Контактная информация:{{' '}}</span>
+              <span class="request-date">{{ certificateData.developer.contacts}}</span>
+
+            </div>
+            <div>
+              <div *ngIf="certificateData.developer.skills.length !== 0" class="tags-container">
+                <span *ngFor="let tag of certificateData.developer.skills" class="task-tags">{{tag}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok" (click)="createReview()"  type="button" value="Завершить заказ" >
+              <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancelProcessing()" type="button" value="Отклонить выполнение" >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="certificateData?.desiredDevelopers.length !== 0" class = "readyGo">
+        <span class="ready">Готовы взяться</span>
+        <div class="users-container">
+          <div *ngFor="let user of certificateData?.desiredDevelopers" class="user-card">
+            <div class="user-card-container">
+              <div class="row-simple"><a href="#" class="avatar-block-user">
+                <img src="../../../../../assets/avatar.png" alt="">
+              </a>
+                <div class="full-name">
+                  <a href="#">{{user.firstName}} {{user.lastName}}</a>
+                </div>
+              </div>
+              <div>
+                <div *ngIf="user.skills.length !== 0" class="tags-container">
+                  <span *ngFor="let tag of user.skills" class="task-tags">{{tag}}</span>
+                </div>
+                <div class="row-simple">
+                  <div style="margin-top: 5px" class="title">Контакты заказчика:</div>
+                  <div  style="margin-left: 3px" class="request-date">{{user?.contacts}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <input *ngIf="certificateData.creatorId === storeUser.id" class="button-ok"  (click)="approveUser(user.id)" type="button" value="Принять" >
+                <input *ngIf="certificateData.creatorId === storeUser.id" class="button-cancel" (click)="cancel(user.id)" type="button" value="Отклонить" >
+              </div>
+
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+
+
+    <aside class="second-column">
+      <div class = "profile-block">
+        <a href="#" class="avatar-block">
+          <img src="../../../../../assets/avatar.png" alt="">
+        </a>
+        <div class="full-name">
+          <a href="#">{{user?.firstName}} {{user?.lastName}}</a>
+        </div>
+        <div class="role-container">
+          <div class="role">
+            Заказчик
+          </div>
+        </div>
+      </div>
+      <div class="profile-statistic">
+        <div class="title">Статистика заказчика</div>
+        <div class="row">
+          <div>Всего заказов</div>
+          <div>{{requests?.createdServices.length}}</div>
+        </div>
+        <div class="row">
+          <div>Завершённых заказов</div>
+          <div>{{finishedRequests?.length}}</div>
+        </div>
+        <div class="divide-row">
+          <div>Зарегистрирован</div>
+          <div>{{user?.registrationDate.substr(0, 10)}}</div>
+        </div>
+      </div>
+      <div class="profile-statistic">
+        <div class="title">Контакты заказчика</div>
+        <div>{{user?.contacts}}</div>
+      </div>
+    </aside>
+</main>

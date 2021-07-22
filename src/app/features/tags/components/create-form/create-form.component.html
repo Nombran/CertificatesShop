@@ -1,0 +1,11 @@
+<form [formGroup]="tagForm">
+    <div class="container-header">
+        <span>Создать новую специализацию</span>
+    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Введите специализацию</mat-label>
+        <input autocomplete="off" matInput formControlName="tagName">
+        <mat-error *ngIf="_tagName.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <input (click)="onSubmit()" type="button" value="Создать" [disabled]="_tagName.invalid">
+</form>

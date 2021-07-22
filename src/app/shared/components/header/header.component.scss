@@ -1,0 +1,133 @@
+@import "../../../../styles.scss";
+
+$header_background_color: rgb(41, 41, 41);
+$main_background_color: rgb(240, 238, 238);
+$registration_header_color: rgb(53, 53, 53);
+
+.sidenav-container {
+  height: 90vh;
+
+  .sidenav {
+    min-width: 240px;
+
+    a {
+      display: block;
+      padding: 6px 24px;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
+
+header {
+  @include flex-row;
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  height: 10vh;
+  background-color: $header_background_color;
+}
+
+.logo-container {
+  @include flex-row;
+  width: 6vw;
+  height: 100%;
+  justify-content: space-around;
+
+  .menu-button {
+    margin-right: 24px;
+    min-width: 0;
+    padding: 0;
+    line-height: normal;
+  }
+
+  #logo {
+    font-weight: bold;
+    font-size: 12pt;
+    color: rgb(255, 255, 255);
+
+    #logo-part2 {
+      color: rgb(71, 255, 0);
+    }
+  }
+}
+
+.search-container {
+  @include flex-row;
+  height: 100%;
+  width: 60vw;
+
+  input {
+    height: 40%;
+    width: 50%;
+    border: 1px solid rgb(182, 180, 180);
+    padding-left: 2vw;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: rgb(80, 78, 78);
+  }
+
+  .certificate-search {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+
+  .tag-input {
+    width: 15vw;
+    border-left: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  select {
+    height: 63%;
+    width: 20%;
+    border: 1px solid rgb(182, 180, 180);
+    padding-left: 1vw;
+    border-left: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background-image: url("/images/down-arrow.svg");
+    background-size: 7%;
+    background-position: 90% center;
+    background-repeat: no-repeat;
+  }
+}
+
+.right-buttons-container {
+  @include flex-row;
+  text-decoration: none;
+  font-size: 13px;
+  color: white;
+
+  span {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  i {
+    margin-right: 1vw;
+    outline: none;
+  }
+
+  i:hover {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    margin-left: 14px;
+  }
+
+  a:hover {
+    color: rgb(71, 255, 0);
+  }
+}

@@ -1,0 +1,126 @@
+@import "../../../../styles.scss";
+
+$header_background_color:white;
+$main_background_color:rgb(240, 238, 238);
+$registration_header_color: rgb(53, 53, 53);
+
+.form-container {
+    @include flex-column;
+    justify-content: flex-start;
+    width: 50vw;
+    height: auto;
+    background-color: white;
+    $header-height: 40%;
+    .container-header {
+        @include flex-column;
+        align-items: flex-start;
+        padding-left: 5%;
+        width: 95%;
+        height: 100px;
+        background-color: $registration_header_color;
+        color: white;
+        font-weight: bold;
+    }
+    form {
+        height: 98% - $header-height;
+        width: 100%;
+        padding: 14px;
+        $input_width:26vw;
+
+        .text-input-container {
+            @include flex-column;
+            width: 100%;
+            height: 70%;
+        }
+        .input {
+            border: #30cc7e;
+        }
+      mat-chip-list mat-label {
+        margin-left: 14px;
+      }
+      mat-form-field {
+            width: 25vw;
+        }
+        textarea {
+          height: 100px;
+        }
+        .input-column {
+            @include flex-column;
+            width: 50%;
+            justify-content: start;
+            height: 100%;
+        }
+        input {
+
+        }
+
+        ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+            background-color: white;
+        }
+        .mat-input-element {
+            color: rgb(53, 53, 53);
+        }
+        ::ng-deep .mat-focused .mat-form-field-ripple {
+
+            background-color: green !important;
+        }
+        ::ng-deep .mat-form-field-invalid .ng-invalid {
+            color: red !important;
+        }
+        ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+            color: green !important;
+        }
+        .button-container {
+            @include flex-row;
+            padding-left: 14px;
+            height: 30%;
+            input[type="button"] {
+                cursor: pointer;
+                width: 30%;
+                height: 6vh;
+                margin-right: 1vw;
+                margin-left: 20px;
+                font-weight: bold;
+                &.signup-button {
+                    margin-right: 3vw;
+                    background-color: rgb(48, 204, 126);
+                    color: white;
+                    &.disabled {
+                        position : relative;
+                        color    : red;
+                        background-color: white;
+                        border: 1px solid red;
+                    }
+                    &.disabled:after {
+                        position :absolute;
+                        left     : 0;
+                        top      : 0;
+                        width    : 100%;
+                        height   : 100%;
+                        content  :' ';
+                    }
+                    &:hover {
+                        background-color: white;
+                        border: 1px solid rgb(48, 204, 126);
+                        color:rgb(48, 204, 126);
+                    }
+                    &:hover.disabled {
+                        position : relative;
+                        color    : red;
+                        background-color: white;
+                        border: 1px solid red;
+                        cursor: auto;
+                    }
+                }
+                &.cancel-button {
+                    border: 1px solid $registration_header_color;
+                    background-color: white;
+                    &:hover {
+                        background-color: $registration_header_color;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

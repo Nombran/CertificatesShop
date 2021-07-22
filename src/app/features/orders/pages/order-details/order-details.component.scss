@@ -1,0 +1,72 @@
+@import "../../../../../styles.scss";
+
+$main_background_color: rgb(240, 238, 238);
+
+main {
+    @include flex-column;
+    background-color: $main_background_color;
+    min-height: 90vh;
+    height: auto;
+    width: 100%;
+    justify-content: flex-start;
+    .container-header {
+        @include flex-row;
+        justify-content: flex-start;
+        padding-left: 23%;
+        width: 100%;
+        box-sizing: border-box;
+        height: 8vh;
+        background-color: rgb(53, 53, 53);
+        color: white;
+        font-weight: bold;
+        margin-bottom: 2vh;
+    }
+    .card-container {
+        @include flex-column;
+        justify-content: flex-start;
+        width: 100%;
+        height: auto;
+        .horizontal-line {
+            height: 1px;
+            width: 70%;
+            background-color: rgb(53, 53, 53);
+        }
+        .total-info {
+            @include flex-row;
+            margin-top: 2vh;
+            width: 100%;
+            height: 5vh;
+            align-items: center;
+            .total-word {
+                width: 71vw;
+                font-weight: bold;
+                text-align: end;
+                font-size: 18px;
+                padding-right: 1vw;
+            }
+            span {
+                width: 27vw;
+                padding-left: 3.2vw;
+                box-sizing: border-box;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+        input {
+            margin-right: 3vw;
+            background-color: rgb(48, 204, 126);
+            color: white;
+            cursor: pointer;
+            width: 15vw;
+            height: 6vh;
+            margin-top: 2vh;
+            margin-left: 50vw;
+            &:hover {
+                background-color: white;
+                border: 1px solid rgb(48, 204, 126);
+                color: rgb(48, 204, 126);
+            }
+            margin-bottom: 5vh;
+        }
+    }
+}

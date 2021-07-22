@@ -1,0 +1,299 @@
+@import "../../../../../styles.scss";
+
+$main_background_color: rgb(240, 238, 238);
+
+main {
+    @include flex-row;
+    align-items: flex-start;
+    background-image: url("../../../../../assets/bulb.svg");
+    padding: 5%;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    .main-info-container {
+      height: auto;
+      width: 95%;
+      border: 3px #353535;
+      background-color: white;
+      box-shadow: 0px 3px 5px 0 rgb(174 174 174 / 50%);
+      box-sizing: border-box;
+      padding: 25px 75px 25px 20px;
+      box-sizing: border-box;
+      margin-right: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .button-approve-container {
+    border-top: 1px solid #d9dfe0;
+    margin-top: auto;
+    text-align: center;
+  }
+  .status {
+    border-radius: 5px;
+    padding: 5px;
+    height: 20px;
+    font-weight: bold;
+  }
+  .pending {
+    border: solid 2px gray;
+    color: gray;
+  }
+  .inProgress {
+    border: solid 2px yellow;
+    color: yellow;
+  }
+  .complete {
+    border: solid 2px #5fbfb4;
+    color: #5fbfb4;
+  }
+ .button-approve {
+    margin-top: 14px;
+    cursor: pointer;
+    width: 70%;
+    height: 6vh;
+    font-weight: bold;
+    background-color: rgb(48, 204, 126);
+    color: white;
+    &:hover {
+      background-color: white;
+      border: 1px solid rgb(48, 204, 126);
+      color: rgb(48, 204, 126);
+    }
+    &:disabled {
+      cursor: auto;
+      background-color: white;
+      border: 1px solid red;
+      color: red;
+    }
+  }
+  .button-ok {
+    margin-top: 14px;
+    cursor: pointer;
+    width: 40%;
+    height: 4vh;
+    font-weight: bold;
+    background-color: rgb(48, 204, 126);
+    color: white;
+    &:hover {
+      background-color: white;
+      border: 1px solid rgb(48, 204, 126);
+      color: rgb(48, 204, 126);
+    }
+    &:disabled {
+      cursor: auto;
+      background-color: white;
+      border: 1px solid red;
+      color: red;
+    }
+  }
+  .button-cancel {
+    margin-top: 14px;
+    cursor: pointer;
+    width: 40%;
+    height: 4vh;
+    font-weight: bold;
+    background-color: gray;
+    border-radius: 5%;
+    color: white;
+    &:hover {
+      background-color: white;
+      border: 1px solid red;
+
+      color: red;
+    }
+    &:disabled {
+      cursor: auto;
+      background-color: white;
+      border: 1px solid red;
+
+      color: red;
+    }
+  }
+  .readyGo {
+    margin-top: 10px;
+  }
+  .ready {
+
+    margin-left: 14px;
+    font-size: 15px;
+    color: #506172;
+    font-weight: bold;
+  }
+  .request-container {
+    width: 100%;
+    color: #4f6173;
+  }
+  .description {
+    width: 57%;
+  }
+  .row-simple{
+    display: flex;
+    flex-direction: row;
+  }
+  .description-container {
+    margin: 20px 0 0;
+    min-height: 150px;
+    height: auto;
+    padding: 14px;
+    border: 1px solid #d2dae2;
+    border-radius: 5px;
+    word-wrap: break-word;
+  }
+  .request-name {
+    position: relative;
+    padding: 0;
+    word-wrap: break-word;
+    color: #4f6173;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.5em;
+  }
+  .price-container{
+    margin-bottom: 14px;
+  }
+  .price {
+    font-weight: bold;
+    color: #5fbfb4;
+  }
+  .request-date {
+    margin-top: 5px;
+    font-size: 15px;
+    color: #aeb8bc;
+  }
+  .dec-text {
+    margin-top: 5px;
+    font-size: 15px;
+    color: #506172;
+  }
+  .tags-container {
+    margin: 20px 0 0;
+  }
+  .task-tags {
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid #d2dae2;
+    border-radius: 5px;
+    color: #9eabb8;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  .second-column {
+    width: 300px;
+    height: 100%;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0px 3px 5px 0 rgb(174 174 174 / 50%);
+
+  }
+  .profile-block {
+    box-sizing: border-box;
+    margin: 0 0 14px;
+    text-align: center;
+  }
+  .avatar-block {
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: auto;
+  }
+  .avatar-block img {
+    display: block;
+    margin: 0;
+    width: 90px;
+    height: 90px;
+  }
+  .full-name {
+    margin: 10px 0 0;
+    font-size: 21px;
+    font-weight: bold;
+    color: #4f6173;
+  }
+  .full-name a {
+    text-decoration: none;
+    color: #4f6173;
+  }
+  .role-container {
+    text-align: center;
+    padding: 15px 0 20px;
+  }
+  .role {
+    font-size: 15px;
+    font-weight: bold;
+    color: #aeb8bc;
+  }
+  .profile-statistic {
+    padding: 15px 0;
+    border-top: 1px solid #eceeef;
+  }
+  .title {
+    font-size: 15px;
+    color: #506172;
+    font-weight: bold;
+    margin-bottom: 7px;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .divide-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+  .user-card {
+    margin-top: 14px;
+    border: 3px #353535;
+
+    background-color: white;
+    box-shadow: 0px 3px 5px 0 rgb(174 174 174 / 50%);
+    width: 95%;
+
+  }
+  .users-container{
+    width: 95%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  .user-card-container{
+    padding: 14px;
+  }
+  .avatar-block-user {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 14px;
+  }
+  .avatar-block-user img {
+    display: block;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+  }
+  .user-card-approve-container {
+    margin-top: 14px;
+  }
+}
+
+#creator {
+  height: 10%;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-bottom: 5vh;
+}

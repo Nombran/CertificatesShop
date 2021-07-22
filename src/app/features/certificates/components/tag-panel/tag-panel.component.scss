@@ -1,0 +1,12 @@
+@import "../../../../../styles.scss";
+
+.category-container {
+    @include flex-row;
+    min-height: 20vh;
+    flex-wrap: wrap;
+    height: auto;
+    width: 98.9vw;
+    background-color: rgb(223, 219, 219);
+    padding-left: 0;
+    padding-right: 0;
+}

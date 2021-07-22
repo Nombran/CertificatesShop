@@ -1,0 +1,53 @@
+@import "../../../../../styles.scss";
+
+.elem-container {
+    @include flex-row;
+    width: 80vw;
+    height: 10vw;
+    margin-left: 11vw;
+    img {
+        width: 10vw;
+    }
+    .info-container {
+        @include flex-column;
+        width: 50%;
+        height: 100%;
+        align-items: flex-start;
+        margin-left: 3vw;
+        h1 {
+            font-weight: bold;
+        }
+    }
+    .price {
+        @include flex-row;
+        justify-content: flex-start;
+        width: 10vw;
+        font-weight: bold;
+        font-size: 18px;
+        border-left: 1px solid rgb(53, 53, 53);
+        height: 80%;
+        box-sizing: border-box;
+        padding-left: 3vw;
+    }
+    .count {
+        font-weight: 100; 
+        margin-left: 0.5vw;
+        color:black;
+        color: rgb(255, 0, 0);
+    }
+    .add {
+        margin-left: 5vw;
+        box-sizing: border-box;
+        &:hover {
+            color: green;
+        }
+    }
+    .remove:hover {
+        color: red;
+    }
+    i {
+        cursor: pointer;
+        font-size: 30px;
+    }
+
+}
